@@ -10,6 +10,8 @@ class AdminController extends Controller
 {
     public function register(Request $request)
     {
+        РУслан лОООООХ
+        return response()->json(['user' => $request->all()], 201);
         $user = Admin::create([
             'name' => $request->name,
             'surname' => $request->surname,
@@ -21,18 +23,18 @@ class AdminController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
-        
+
         return response()->json(['user' => $user], 201);
     }
-    
+
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        
+
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
-        
+
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
