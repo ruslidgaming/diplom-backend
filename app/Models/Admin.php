@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class Admin extends Authenticatable
+class Admin extends Authenticatable implements JWTSubject
 {
     use HasFactory;
 

@@ -52,8 +52,8 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
+        
         $credentials = $request->only('email', 'password');
-        \Log::debug('Login attempt:', $credentials);
 
         if (!$token = auth('admin-api')->attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
