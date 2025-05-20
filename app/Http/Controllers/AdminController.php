@@ -52,10 +52,10 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
-        return response()->json(['user' => $request], 201);
         $credentials = $request->only('email', 'password');
+        \Log::debug('Login attempt:', $credentials);
 
-        if (!$token = JWTAuth::attempt($credentials)) {
+        if (!$token = auth('admin-api')->attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
 
