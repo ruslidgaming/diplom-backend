@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->string('patronymic');
-            $table->string('number');
-            $table->string('name_school');
-            $table->string('description_school');
+            $table->string('oldname');
+            $table->string('telephon');
+            $table->string('companyName');
+            $table->string('companyDescription');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

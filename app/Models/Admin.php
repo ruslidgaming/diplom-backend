@@ -13,12 +13,12 @@ class Admin extends Model
     protected $fillable = [
         'name',
         'surname',
-        'patronymic',
+        'oldname',
         'email',
-        'number',
+        'telephon',
         'password',
-        'name_school',
-        'description_school'
+        'companyName',
+        'companyDescription'
     ];
 
     protected $hidden = [
