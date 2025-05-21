@@ -36,11 +36,11 @@ class AdminController extends Controller
             'email.unique' => 'Такой email уже используется',
 
             'name.max' => 'Поле "Имя" не должно превышать 128 символов',
-            'name.surname' => 'Поле "Фамилия" не должно превышать 128 символов',
-            'name.oldname' => 'Поле "Отчество" не должно превышать 128 символов',
-            'name.companyName' => 'Поле "Название компании" не должно превышать 128 символов',
-            'name.companyDescription' => 'Поле "описание компании" не должно превышать 128 символов',
-            'name.telephon' => 'Поле "Телефон" не должно превышать 20 символов',
+            'surname.max' => 'Поле "Фамилия" не должно превышать 128 символов',
+            'oldname.max' => 'Поле "Отчество" не должно превышать 128 символов',
+            'companyName.max' => 'Поле "Название компании" не должно превышать 128 символов',
+            'companyDescription.max' => 'Поле "описание компании" не должно превышать 128 символов',
+            'telephon.max' => 'Поле "Телефон" не должно превышать 20 символов',
             
             'email.email' => 'Поле "email" некорректно',
             'password.min' => 'Поле "Пароль" должно быть не менее 8 символов',
@@ -79,7 +79,8 @@ class AdminController extends Controller
             'access_token' => $token,
             'refresh_token' => $refreshToken,
             'token_type' => 'bearer',
-            'expires_in' => config('jwt.ttl') * 60
+            'expires_in' => config('jwt.ttl') * 60,
+            'user' => auth('admin-api')->user(),
         ]);
     }
 
