@@ -15,7 +15,7 @@ class AdminController extends Controller
         $user = $request->validate([
             'name' => 'required|string|max:128',
             'surname' => 'required|string|max:128',
-            'oldname' => 'string|max:128',
+            'oldname' => 'nullable|string|max:128',
             'companyName' => 'required|string|max:128',
             'companyDescription' => 'required|string|max:1024',
             'telephon' => 'required|string|max:20',
@@ -31,7 +31,9 @@ class AdminController extends Controller
             'companyDescription.required' => 'Поле "Описание компании" обязательно для заполения',
             'telephon.required' => 'Поле "Телефон" обязательно для заполения',
             'email.required' => 'Поле "Email" обязательно для заполения',
-            'email.password' => 'Поле "Пароль" обязательно для заполения',
+            'password.required' => 'Поле "Пароль" обязательно для заполения',
+            'password_r.required' => 'Поле "Подтвердите пароль" обязательно для заполения',
+            'email.unique' => 'Такой email уже используется',
 
             'name.max' => 'Поле "Имя" не должно превышать 128 символов',
             'name.surname' => 'Поле "Фамилия" не должно превышать 128 символов',
@@ -42,6 +44,7 @@ class AdminController extends Controller
             
             'email.email' => 'Поле "email" некорректно',
             'password.min' => 'Поле "Пароль" должно быть не менее 8 символов',
+            'password_r.same' => 'Пароли не совпадают'
         ]
     
     );
