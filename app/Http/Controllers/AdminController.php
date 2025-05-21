@@ -121,7 +121,7 @@ class AdminController extends Controller
         'role' => 'admin',
     ]);
 }
-public function admin(Request $request) {
+public function getAdmin(Request $request) {
     $token = $request;
 
     $user = JWTAuth::setToken($token)->authenticate();

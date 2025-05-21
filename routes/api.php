@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [AdminController::class, 'register']);
 Route::post('/login', [AdminController::class, 'login']);
-Route::post('/refresh', [AuthController::class, 'refresh']);
+Route::post('/refresh', [AdminController::class, 'refresh']);
+Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 
 // Защищённые роуты (только для авторизованных)
 Route::middleware('auth:api')->group(function () {
