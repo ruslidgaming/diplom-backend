@@ -117,7 +117,15 @@ class AdminController extends Controller
         'access_token' => $newAccessToken,
         'refresh_token' => $newRefreshToken,
         'token_type' => 'bearer',
-        'expires_in' => config('jwt.ttl') * 60
+        'expires_in' => config('jwt.ttl') * 60,
+        'role' => 'admin',
     ]);
+}
+public function admin(Request $request) {
+    $token = $request;
+
+    $user = JWTAuth::setToken($token)->authenticate();
+
+    return response()->json(['user' => $user], 201);
 }
 }

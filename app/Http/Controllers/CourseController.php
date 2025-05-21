@@ -62,8 +62,18 @@ class CourseController extends Controller
         }
 
         Course::where('id', $request->id)->update([
-            ''
+            'name' => $request->name,
+            'price' => $request->price,
+            'mini_description' => $request->mini_description,
+            'description' => $request->description,
+            'image' => $val['image'],
         ]);
+
+        return response()->json(true, 201);
+    }
+
+    public function delete(Request $request) {
+        Course::where('id', $request->id)->delete();
 
         return response()->json(true, 201);
     }
