@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use DB;
 use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
+use Str;
 
 class AdminController extends Controller
 {
@@ -59,10 +61,59 @@ class AdminController extends Controller
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
 
+        // Генерация refresh token
+        $refreshToken = Str::random(128);
+        $expiresAt = now()->addDays(7); // Срок жизни refresh token
+
+        // Сохраняем refresh token в БД
+        DB::table('refresh_tokens')->insert([
+            'token' => $refreshToken,
+            'admin_id' => auth('admin-api')->id(),
+            'expires_at' => $expiresAt,
+        ]);
+
         return response()->json([
             'access_token' => $token,
+            'refresh_token' => $refreshToken,
             'token_type' => 'bearer',
-            'expires_in' => config('jwt.ttl') * 60 // время жизни в секундах
+            'expires_in' => config('jwt.ttl') * 60
         ]);
     }
+
+    public function refresh(Request $request)
+{
+    $refreshToken = $request->input('refresh_token');
+
+    // Проверяем refresh token в БД
+    $tokenRecord = DB::table('refresh_tokens')
+        ->where('token', $refreshToken)
+        ->where('expires_at', '>', now())
+        ->first();
+
+    if (!$tokenRecord) {
+        return response()->json(['error' => 'Недействительный refresh token'], 401);
+    }
+
+    // Авторизуем администратора
+    $admin = Admin::find($tokenRecord->admin_id);
+    $newAccessToken = auth('admin-api')->fromUser($admin);
+
+    // Удаляем использованный refresh token
+    DB::table('refresh_tokens')->where('token', $refreshToken)->delete();
+
+    // Генерируем новый refresh token
+    $newRefreshToken = Str::random(128);
+    DB::table('refresh_tokens')->insert([
+        'token' => $newRefreshToken,
+        'admin_id' => $admin->id,
+        'expires_at' => now()->addDays(7),
+    ]);
+
+    return response()->json([
+        'access_token' => $newAccessToken,
+        'refresh_token' => $newRefreshToken,
+        'token_type' => 'bearer',
+        'expires_in' => config('jwt.ttl') * 60
+    ]);
+}
 }

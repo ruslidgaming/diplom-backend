@@ -57,4 +57,8 @@ class Admin extends Authenticatable implements JWTSubject
     public function statistic() {
         return $this->belongsTo(Statistic::class);
     }
+
+    public function refresh_token() {
+        return $this->belongsTo(Refresh_token::class);
+    }
 }
