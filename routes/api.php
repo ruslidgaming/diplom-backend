@@ -21,6 +21,11 @@ Route::post('/login', [AdminController::class, 'login']);
 Route::post('/refresh', [AdminController::class, 'refresh']);
 Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 
+Route::post('/course/add', [AdminController::class, 'getAdmin']);
+Route::post('/course/update', [AdminController::class, 'getAdmin']);
+Route::post('/course/delete', [AdminController::class, 'getAdmin']);
+
+
 // Защищённые роуты (только для авторизованных)
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
