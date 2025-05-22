@@ -82,7 +82,7 @@ class AdminController extends Controller
             'refresh_token' => $refreshToken,
             'token_type' => 'bearer',
             'expires_in' => config('jwt.ttl') * 60,
-            'user' => auth('admin-api')->user(),
+            'user' => $user,
         ]);
     }
 
