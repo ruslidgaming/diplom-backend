@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MentorController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,8 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', [AdminController::class, 'register']);
-Route::post('/login', [AdminController::class, 'login']);
+Route::post('/admin/register', [AdminController::class, 'register']);
+Route::post('/admin/login', [AdminController::class, 'login']);
+
+Route::post('/mentor/login', [MentorController::class, 'login']);
+Route::post('/mentor/create', [MentorController::class, 'create']);
+
+Route::post('/student/login', [StudentController::class, 'login']);
+Route::post('/student/register', [StudentController::class, 'register']);
+
+
 Route::post('/refresh', [AdminController::class, 'refresh']);
 Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 

@@ -81,7 +81,7 @@ class AdminController extends Controller
             'access_token' => $token,
             'refresh_token' => $refreshToken,
             'token_type' => 'bearer',
-            'expires_in' => config('jwt.ttl') * 60,
+            'expires_in' => config('jwt.ttl') * 120,
             'user' => $user,
         ]);
     }
@@ -102,6 +102,9 @@ class AdminController extends Controller
 
     // Авторизуем администратора
     $admin = Admin::find($tokenRecord->admin_id);
+    if (!$admin) {
+        return response()->json(['error' => 'Администратор не найден'], 401);
+    }
     $newAccessToken = auth('admin-api')->fromUser($admin);
 
     // Удаляем использованный refresh token
@@ -114,13 +117,14 @@ class AdminController extends Controller
         'admin_id' => $admin->id,
         'expires_at' => now()->addDays(7),
     ]);
+    $admin->role = 'admin';
 
     return response()->json([
         'access_token' => $newAccessToken,
         'refresh_token' => $newRefreshToken,
         'token_type' => 'bearer',
-        'expires_in' => config('jwt.ttl') * 60,
-        'role' => 'admin',
+        'expires_in' => config('jwt.ttl') * 120,
+        'user' => $admin,
     ]);
 }
 public function getAdmin(Request $request) {

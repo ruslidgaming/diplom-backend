@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->string('oldname');
+            $table->string('oldname')->nullable();
             $table->string('telephon');
             $table->string('email');
+            $table->string('password');
             $table->foreignId('admin_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

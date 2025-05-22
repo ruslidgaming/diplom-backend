@@ -18,6 +18,7 @@ class Student extends Authenticatable implements JWTSubject
         'telephon',
         'email',
         'admin_id',
+        'password',
     ];
 
     public function admin() {
