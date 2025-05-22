@@ -74,6 +74,8 @@ class AdminController extends Controller
             'admin_id' => auth('admin-api')->id(),
             'expires_at' => $expiresAt,
         ]);
+        $user = auth('admin-api')->user();
+        array_push($user, 'admin');
 
         return response()->json([
             'access_token' => $token,
@@ -81,7 +83,6 @@ class AdminController extends Controller
             'token_type' => 'bearer',
             'expires_in' => config('jwt.ttl') * 60,
             'user' => auth('admin-api')->user(),
-            'role' => 'admin',
         ]);
     }
 
