@@ -46,6 +46,10 @@ class Admin extends Authenticatable implements JWTSubject
         return $this->belongsTo(Mentor::class);
     }
 
+    public function feedback() {
+        return $this->belongsTo(Feedback::class);
+    }
+
     public function course() {
         return $this->belongsTo(Course::class);
     }

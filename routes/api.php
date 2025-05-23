@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
@@ -40,6 +41,9 @@ Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 Route::post('/course/add', [AdminController::class, 'getAdmin']);
 Route::post('/course/update', [AdminController::class, 'getAdmin']);
 Route::post('/course/delete', [AdminController::class, 'getAdmin']);
+
+Route::post('/feedback', [FeedbackController::class, 'feedback']);
+
 
 
 // Защищённые роуты (только для авторизованных)
