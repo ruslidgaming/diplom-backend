@@ -11,7 +11,7 @@ use Str;
 class AdminController extends Controller
 {
     public function register(Request $request)
-    {
+    {f
         $user = $request->validate(
             [
                 'name' => 'required|string|max:128',
