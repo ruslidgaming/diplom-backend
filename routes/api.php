@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware('admin.auth')->group(function () {
+    Route::post('/admin/logout', [AdminController::class, 'logout']);
+});
+
 Route::post('/admin/register', [AdminController::class, 'register']);
 Route::post('/admin/login', [AdminController::class, 'login']);
-Route::post('/admin/logout', [AdminController::class, 'logout']);
 
 Route::post('/mentor/login', [MentorController::class, 'login']);
 Route::post('/mentor/logout', [MentorController::class, 'logout']);

@@ -36,74 +36,52 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-        'api' => [
-            'driver' => 'jwt',
-            'provider' => 'users',
-        ],
-
-        'admin-api' => [
-            'driver' => 'jwt',
-            'provider' => 'admins',
-        ],
-
-        'mentor-api' => [
-            'driver' => 'jwt',
-            'provider' => 'mentors',
-        ],
-
-        'student-api' => [
-            'driver' => 'jwt',
-            'provider' => 'students',
-        ],
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | User Providers
-    |--------------------------------------------------------------------------
-    |
-    | All authentication drivers have a user provider. This defines how the
-    | users are actually retrieved out of your database or other storage
-    | mechanisms used by this application to persist your user's data.
-    |
-    | If you have multiple user tables or models you may configure multiple
-    | sources which represent each model / table. These sources may then
-    | be assigned to any extra authentication guards you have defined.
-    |
-    | Supported: "database", "eloquent"
-    |
-    */
-
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-
-        'mentors' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Mentor::class,
-
-        'students' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Student::class,
-        ],
+    'api' => [
+        'driver' => 'jwt',
+        'provider' => 'users',
     ],
+    'admin-api' => [
+        'driver' => 'jwt',
+        'provider' => 'admins',
+    ],
+    'mentor-api' => [
+        'driver' => 'jwt',
+        'provider' => 'mentors',
+    ],
+    'student-api' => [
+        'driver' => 'jwt',
+        'provider' => 'students',
+    ],
+],
+
+'providers' => [
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\User::class,
+    ],
+    'admins' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
+    ],
+    'mentors' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Mentor::class,
+    ],
+    'students' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Student::class,
+    ],
+],
+
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -10,8 +10,8 @@ class LessonController extends Controller
     public function add(Request $request) {
         $val = $request->validate([
             'name' => 'required|string|max:128',
-            'video' => 'nullable|file|mimes:mp4,mov,avi|max:20480',
-            'image' => 'nullable|file|mimes:png,jpeg,svg',
+            'video' => 'required|file|mimes:mp4,mov,avi|max:20480',
+            'image' => 'required|file|mimes:png,jpeg,svg',
             'content' => 'required|string',
         ], 
     [
