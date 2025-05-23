@@ -11,7 +11,8 @@ use Str;
 class AdminController extends Controller
 {
     public function register(Request $request)
-    {f
+    {
+        // as
         $user = $request->validate(
             [
                 'name' => 'required|string|max:128',
@@ -51,23 +52,6 @@ class AdminController extends Controller
 
         );
 
-<<<<<<< HEAD
-=======
-            'name.max' => 'Поле "Имя" не должно превышать 128 символов',
-            'surname.max' => 'Поле "Фамилия" не должно превышать 128 символов',
-            'oldname.max' => 'Поле "Отчество" не должно превышать 128 символов',
-            'companyName.max' => 'Поле "Название компании" не должно превышать 128 символов',
-            'companyDescription.max' => 'Поле "описание компании" не должно превышать 128 символов',
-            'telephon.max' => 'Поле "Телефон" не должно превышать 20 символов',
-            
-            'email.email' => 'Поле "email" некорректно',
-            'password.min' => 'Поле "Пароль" должно быть не менее 8 символов',
-            'password_r.same' => 'Пароли не совпадают'
-        ]
-    
-    );
-        
->>>>>>> 937b3860bfd274b1c68d098c81923cfda3745e1c
 
         $user = Admin::create($user);
 
@@ -146,7 +130,6 @@ class AdminController extends Controller
             'user' => $admin,
         ]);
     }
-<<<<<<< HEAD
     public function getAdmin(Request $request)
     {
         $token = $request;
@@ -162,41 +145,4 @@ class AdminController extends Controller
 
         return response()->json(true, 201);
     }
-=======
-
-    // Авторизуем администратора
-    $admin = Admin::find($tokenRecord->admin_id);
-    if (!$admin) {
-        return response()->json(['error' => 'Администратор не найден'], 401);
-    }
-    $newAccessToken = auth('admin-api')->fromUser($admin);
-
-    // Удаляем использованный refresh token
-    DB::table('refresh_tokens')->where('token', $refreshToken)->delete();
-
-    // Генерируем новый refresh token
-    $newRefreshToken = Str::random(128);
-    DB::table('refresh_tokens')->insert([
-        'token' => $newRefreshToken,
-        'admin_id' => $admin->id,
-        'expires_at' => now()->addDays(7),
-    ]);
-    $admin->role = 'admin';
-
-    return response()->json([
-        'access_token' => $newAccessToken,
-        'refresh_token' => $newRefreshToken,
-        'token_type' => 'bearer',
-        'expires_in' => config('jwt.ttl') * 120,
-        'user' => $admin,
-    ]);
-}
-public function getAdmin(Request $request) {
-    $token = $request;
-
-    $user = JWTAuth::setToken($token)->authenticate();
-
-    return response()->json(['user' => $user], 201);
-}
->>>>>>> 937b3860bfd274b1c68d098c81923cfda3745e1c
 }
