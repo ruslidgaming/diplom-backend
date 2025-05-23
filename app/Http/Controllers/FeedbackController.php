@@ -16,7 +16,7 @@ class FeedbackController extends Controller
             'name.max' => 'Максимальная длина имени 64 символа',
 
             'telephon.required' => 'Поле "телефон" обязательно',
-            'telephon.regex' => 'Поле "Некорректно" обязательно',
+            'telephon.regex' => 'Поле "телефон" некорректно',
         ]);
 
         Feedback::create([

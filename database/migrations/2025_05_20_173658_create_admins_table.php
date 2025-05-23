@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('companyName');
             $table->string('companyDescription');
             $table->string('email')->unique();
+            $table->string('role')->default('admin');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

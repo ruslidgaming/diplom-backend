@@ -1,12 +1,15 @@
 <?php
 
+use App\Exports\FeedbackExport;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\GptController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +47,12 @@ Route::post('/course/delete', [AdminController::class, 'getAdmin']);
 
 Route::post('/feedback', [FeedbackController::class, 'feedback']);
 
+Route::get('/export/feedback', function () {
+    return Excel::download(new FeedbackExport, 'feedback.xlsx');
+});
+
+
+Route::post('/gpt', [GptController::class, 'gpt']);
 
 
 // Защищённые роуты (только для авторизованных)
