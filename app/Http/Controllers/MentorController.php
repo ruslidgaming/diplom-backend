@@ -68,4 +68,39 @@ class MentorController extends Controller
 
         return response()->json(['user' => $user], 201);
     }
+
+    public function update(Request $request){
+        $val = $request->validate([
+            'name' => 'required|string|max:64',
+            'surname' => 'required|string|max:64',
+            'login' => 'required|string|max:64',
+            'password' => 'required|min:8'
+        ],[
+            'name.required' => 'Поле "имя" обязательно',
+            'surname.required' => 'Поле "фамилия" обязательно',
+            'login.required' => 'Поле "логин" обязательно',
+            'password.required' => 'Поле "пароль" обязательно',
+
+            'name.max' => 'Поле "имя" не может превышать 64 символа',
+            'surname.max' => 'Поле "имя" не может превышать 64 символа',
+            'login.max' => 'Поле "имя" не может превышать 64 символа',
+            'password.min' => 'Минимальный пароль 8 символов',
+        ]);
+
+        Mentor::where('id', $request->id)->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'login' => $request->login,
+            'password' => $request->password,
+        ]);
+        $user = Mentor::where('id', $request->id)->first();
+
+        return response()->json(['user' => $user], 201);
+    }
+
+    public function logout() {
+        auth('mentor-api')->logout();
+
+        return response()->json(true, 201);
+    }
 }

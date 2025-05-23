@@ -45,4 +45,41 @@ class StudentController extends Controller
 
         return response()->json(['user' => $user], 201);
     }
+
+    public function login(Request $request)
+    {
+        
+        $credentials = $request->only('email', 'password');
+
+        if (!$token = auth('admin-api')->attempt($credentials)) {
+            return response()->json(['error' => 'Неверный email или пароль'], 401);
+        }
+
+        // Генерация refresh token
+        // $refreshToken = Str::random(128);
+        // $expiresAt = now()->addDays(7); // Срок жизни refresh token
+
+        // Сохраняем refresh token в БД
+        // DB::table('refresh_tokens')->insert([
+        //     'token' => $refreshToken,
+        //     'admin_id' => auth('admin-api')->id(),
+        //     'expires_at' => $expiresAt,
+        // ]);
+        $user = auth('admin-api')->user();
+        $user->role = 'student';
+
+        return response()->json([
+            'access_token' => $token,
+            // 'refresh_token' => $refreshToken,
+            'token_type' => 'bearer',
+            'expires_in' => config('jwt.ttl') * 120,
+            'user' => $user,
+        ]);
+    }
+
+    public function logout() {
+        auth('student-api')->logout();
+
+        return response()->json(true, 201);
+    }
 }

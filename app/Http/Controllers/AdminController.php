@@ -18,7 +18,7 @@ class AdminController extends Controller
             'oldname' => 'nullable|string|max:128',
             'companyName' => 'required|string|max:128',
             'companyDescription' => 'required|string|max:1024',
-            'telephon' => 'required|string|max:20',
+            'telephon' => 'required|string|max:20|regex:/^\+?[0-9\s\-()]{7,}$/',
             'email' => 'required|email|unique:admins',
             'password' => 'required|min:8',
             'password_r' => 'required|same:password'
@@ -41,6 +41,7 @@ class AdminController extends Controller
             'companyName.max' => 'Поле "Название компании" не должно превышать 128 символов',
             'companyDescription.max' => 'Поле "описание компании" не должно превышать 128 символов',
             'telephon.max' => 'Поле "Телефон" не должно превышать 20 символов',
+            'telephon.regex' => 'Поле "Телефон" не корректно',
             
             'email.email' => 'Поле "email" некорректно',
             'password.min' => 'Поле "Пароль" должно быть не менее 8 символов',
@@ -126,12 +127,18 @@ class AdminController extends Controller
         'expires_in' => config('jwt.ttl') * 120,
         'user' => $admin,
     ]);
-}
-public function getAdmin(Request $request) {
-    $token = $request;
+    }
+    public function getAdmin(Request $request) {
+        $token = $request;
 
-    $user = JWTAuth::setToken($token)->authenticate();
+        $user = JWTAuth::setToken($token)->authenticate();
 
-    return response()->json(['user' => $user], 201);
-}
+        return response()->json(['user' => $user], 201);
+    }
+
+    public function logout() {
+        auth('admin-api')->logout();
+
+        return response()->json(true, 201);
+    }
 }

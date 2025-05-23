@@ -20,13 +20,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/admin/register', [AdminController::class, 'register']);
 Route::post('/admin/login', [AdminController::class, 'login']);
+Route::post('/admin/logout', [AdminController::class, 'logout']);
 
 Route::post('/mentor/login', [MentorController::class, 'login']);
+Route::post('/mentor/logout', [MentorController::class, 'logout']);
 Route::post('/mentor/create', [MentorController::class, 'create']);
+Route::post('/mentor/update', [MentorController::class, 'update']);
 
 Route::post('/student/login', [StudentController::class, 'login']);
 Route::post('/student/register', [StudentController::class, 'register']);
-
+Route::post('/student/logout', [StudentController::class, 'logout']);
 
 Route::post('/refresh', [AdminController::class, 'refresh']);
 Route::post('/getAdmin', [AdminController::class, 'getAdmin']);

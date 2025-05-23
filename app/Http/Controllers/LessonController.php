@@ -16,6 +16,7 @@ class LessonController extends Controller
         ], 
     [
         'name.required' => 'Поле "название" должно быть обязательным',
+        'name.max' => 'Поле "название" не должно содержать более 128 символов',
         'content.required' => 'Поле "контент" должно быть обязательным',
 
         'video.mimes' => 'Поле "видео" должно быть в формате: mp4, mov, avi',
@@ -47,6 +48,7 @@ class LessonController extends Controller
         ], 
     [
         'name.required' => 'Поле "название" должно быть обязательным',
+        'name.max' => 'Поле "название" не должно содержать более 128 символов',
         'content.required' => 'Поле "контент" должно быть обязательным',
 
         'video.mimes' => 'Поле "видео" должно быть в формате: mp4, mov, avi',
