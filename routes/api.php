@@ -3,6 +3,7 @@
 use App\Exports\FeedbackExport;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GptController;
 use App\Http\Controllers\MentorController;
@@ -41,9 +42,9 @@ Route::post('/student/logout', [StudentController::class, 'logout']);
 Route::post('/refresh', [AdminController::class, 'refresh']);
 Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 
-Route::post('/course/add', [AdminController::class, 'getAdmin']);
-Route::post('/course/update', [AdminController::class, 'getAdmin']);
-Route::post('/course/delete', [AdminController::class, 'getAdmin']);
+Route::post('/course/add', [CourseController::class, 'add']);
+Route::post('/course/update', [CourseController::class, 'update']);
+Route::post('/course/delete', [CourseController::class, 'delete']);
 
 Route::post('/feedback', [FeedbackController::class, 'feedback']);
 
