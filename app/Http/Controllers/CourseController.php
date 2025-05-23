@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Log;
 
 class CourseController extends Controller
 {
@@ -33,10 +34,16 @@ class CourseController extends Controller
 
         // Course::create($val);
 
-        // return response()->json(true, 201);
+        return response()->json(true, 201);
+    if ($request->hasFile('courseImage')) {
+            $path = $request->file('courseImage')->store('images', 'public');
+            Log::info('File uploaded: ' . $path);
+            return response()->json(['path' => $path]);
+        } else {
+            Log::info('No file uploaded');
+            return response()->json(['message' => 'No file']);
+        }
 
-        return response()->json($request);
-        
     }
 
     public function update(Request $request) {

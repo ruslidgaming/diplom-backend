@@ -8,10 +8,12 @@ use Log;
 
 class GptController extends Controller
 {
-    public function gpt() {
+    public function gpt(Request $request) {
+        $promt = $request->promt;
+        $max_tokens = $request->max_tokens;
         $response = Http::post('http://192.168.1.101:5001/generate', [
-        'prompt' => 'Once upon a time,',
-        'max_tokens' => 10,
+        'prompt' => 'how are you?',
+        'max_tokens' => $max_tokens,
     ]);
 
     if ($response->successful()) {
