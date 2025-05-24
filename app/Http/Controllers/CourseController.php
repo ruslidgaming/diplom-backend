@@ -118,9 +118,9 @@ class CourseController extends Controller
         return response()->json(['courses' => $courses], 200);
     }
 
-    public function show($id) {
-        Log::info("ID: " . $id);
-
+    public function show(Request $request) {
+        $id = $request->id;
+        // Log::info('Request data: ', $request->all());
 
         $course = Course::where('id', $id)->first();
 
