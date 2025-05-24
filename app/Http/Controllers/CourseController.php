@@ -63,9 +63,6 @@ class CourseController extends Controller
         ]);
     }
 
-
-    Log::info('courseImage:'. $request->file('courseImage'));
-
     return response()->json(true, 200);
 
     }
@@ -113,10 +110,12 @@ class CourseController extends Controller
     }
 
     public function catalog(Request $request) {
-        $id = $request->idUser;
+        $adminId = auth('admin-api')->id();
 
-        $courses = Course::where('admin_id', $id)->get();
+        Log::info("Admin ID from token: " . $adminId);
 
-        return response()->json($courses, 200);
+        $courses = Course::where('admin_id', $adminId)->get();
+
+        return response()->json(['courses' => $courses], 200);
     }
 }

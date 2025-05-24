@@ -63,6 +63,12 @@ class AdminController extends Controller
 
         $credentials = $request->only('email', 'password');
 
+        \Log::info('Admin auth middleware', [
+            'check' => auth('admin-api')->check(),
+            'user' => auth('admin-api')->user(),
+            'token' => $request->bearerToken(),
+        ]);
+        
         if (!$token = auth('admin-api')->attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
@@ -147,6 +153,6 @@ class AdminController extends Controller
     }
 
     public function course() {
-        
+
     }
 }
