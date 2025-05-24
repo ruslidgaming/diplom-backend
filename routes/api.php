@@ -64,3 +64,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/me', [AuthController::class, 'me']);
 });
+
+
+Route::get('/images/{filename}', function ($filename) {
+    $path = storage_path('app/public/upload/' . $filename);
+    return response()->file($path);
+});
