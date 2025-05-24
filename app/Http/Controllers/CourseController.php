@@ -34,15 +34,48 @@ class CourseController extends Controller
 
         // Course::create($val);
 
-        return response()->json(true, 201);
+        Log::info('aboutCourse: ' . $request->input('aboutCourse'));
+    Log::info('cardDescription: ' . $request->input('cardDescription'));
+
+    // courseCards — JSON-строка, декодируем
+    $courseCardsRaw = $request->input('courseCards');
+    $courseCards = json_decode($courseCardsRaw, true);
+    Log::info('courseCards:', $courseCards ?? []);
+
+    // mentorCards — тоже JSON
+    $mentorCardsRaw = $request->input('mentorCards');
+    $mentorCards = json_decode($mentorCardsRaw, true);
+    Log::info('mentorCards:', $mentorCards ?? []);
+
+    $count = 1;
+    for ($i = 0; $i < $count; $i++) {
+        Log::info('mentorImage' . $i . $request->file('mentorImage_' . $i));
+    }
+
+    // Log::info('mentorImage_0:'. $request->file('mentorImage_0'));
+    // Log::info('mentorImage_0:'. $request->file('mentorImage_0'));
+    // Log::info('mentorImage_0:'. $request->file('mentorImage_0'));
+    // Log::info('mentorImage_0:'. $request->file('testImg'));
+
+
+    Log::info('courseImage:'. $request->file('courseImage'));
+
+    // Файл courseImage
     if ($request->hasFile('courseImage')) {
-            $path = $request->file('courseImage')->store('images', 'public');
-            Log::info('File uploaded: ' . $path);
-            return response()->json(['path' => $path]);
-        } else {
-            Log::info('No file uploaded');
-            return response()->json(['message' => 'No file']);
-        }
+        $file = $request->file('courseImage');
+        $filename = $file->getClientOriginalName();
+        $path = $file->storeAs('uploads', $filename, 'public');
+        Log::info("Файл courseImage сохранён: " . $path);
+    } else {
+        Log::info("Файл courseImage не передан.");
+    }
+
+    return response()->json([
+        'message' => 'Данные получены',
+        'courseCards' => $courseCards,
+        'mentorCards' => $mentorCards,
+        'filename' => $filename ?? null,
+    ], 200);
 
     }
 
