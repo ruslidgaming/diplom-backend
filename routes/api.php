@@ -33,6 +33,7 @@ Route::post('/admin/register', [AdminController::class, 'register']);
 Route::post('/admin/login', [AdminController::class, 'login']);
 
 Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
+Route::get('/admin/course/show/{id}', [CourseController::class, 'show']);
 
 Route::post('/mentor/login', [MentorController::class, 'login']);
 Route::post('/mentor/logout', [MentorController::class, 'logout']);
@@ -66,7 +67,7 @@ Route::middleware('auth:api')->group(function () {
 });
 
 
-Route::get('/images/{filename}', function ($filename) {
-    $path = storage_path('app/public/upload/' . $filename);
+Route::get('/images/upload/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
     return response()->file($path);
 });

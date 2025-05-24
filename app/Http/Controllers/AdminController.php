@@ -68,7 +68,7 @@ class AdminController extends Controller
             'user' => auth('admin-api')->user(),
             'token' => $request->bearerToken(),
         ]);
-        
+
         if (!$token = auth('admin-api')->attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
@@ -90,7 +90,7 @@ class AdminController extends Controller
             'access_token' => $token,
             'refresh_token' => $refreshToken,
             'token_type' => 'bearer',
-            'expires_in' => config('jwt.ttl') * 120,
+            'expires_in' => config('jwt.ttl') * 3600,
             'user' => $user,
         ]);
     }

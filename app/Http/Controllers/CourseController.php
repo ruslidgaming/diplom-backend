@@ -112,10 +112,18 @@ class CourseController extends Controller
     public function catalog(Request $request) {
         $adminId = auth('admin-api')->id();
 
-        Log::info("Admin ID from token: " . $adminId);
 
         $courses = Course::where('admin_id', $adminId)->get();
 
         return response()->json(['courses' => $courses], 200);
+    }
+
+    public function show($id) {
+        Log::info("ID: " . $id);
+
+
+        $course = Course::where('id', $id)->first();
+
+        return response()->json($course, 200);
     }
 }
