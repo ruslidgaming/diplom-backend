@@ -37,7 +37,7 @@ class CourseController extends Controller
         // Course::create($val);
 
     $image = $request->file('courseImage')->store('upload', 'public');
-    $id = 1;
+    $id = $request->idUser;
     $course = Course::create([
         'name' => $request->title,
         'price' => $request->price,
