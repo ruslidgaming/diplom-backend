@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image');
-            $table->string('post');
+            $table->string('description');
             $table->foreignId('course_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

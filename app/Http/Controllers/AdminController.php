@@ -145,4 +145,8 @@ class AdminController extends Controller
 
         return response()->json(true, 201);
     }
+
+    public function course() {
+        
+    }
 }

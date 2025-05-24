@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Mentor;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Log;
 
@@ -34,48 +36,37 @@ class CourseController extends Controller
 
         // Course::create($val);
 
-        Log::info('aboutCourse: ' . $request->input('aboutCourse'));
-    Log::info('cardDescription: ' . $request->input('cardDescription'));
+    $image = $request->file('courseImage')->store('upload', 'public');
+    $id = 1;
+    $course = Course::create([
+        'name' => $request->title,
+        'price' => $request->price,
+        'mini_description' => $request->cardDescription,
+        'slogan' => $request->slogan,
+        'description' => $request->aboutCourse,
+        'course_info' => $request->courseCards,
+        'admin_id' => $id,
+        'image' => $image,
+    ]);
 
-    // courseCards — JSON-строка, декодируем
-    $courseCardsRaw = $request->input('courseCards');
-    $courseCards = json_decode($courseCardsRaw, true);
-    Log::info('courseCards:', $courseCards ?? []);
-
-    // mentorCards — тоже JSON
     $mentorCardsRaw = $request->input('mentorCards');
     $mentorCards = json_decode($mentorCardsRaw, true);
-    Log::info('mentorCards:', $mentorCards ?? []);
 
-    $count = 1;
+    $count = $request->count;
     for ($i = 0; $i < $count; $i++) {
-        Log::info('mentorImage' . $i . $request->file('mentorImage_' . $i));
+        $image = $request->file('mentorImage_' . $i)->store('upload', 'public');
+        Teacher::create([
+            'name' => $mentorCards[$i]['name'],
+            'description' => $mentorCards[0]['description'],
+            'image' => $image,
+            'course_id' => $course->id,
+        ]);
     }
-
-    // Log::info('mentorImage_0:'. $request->file('mentorImage_0'));
-    // Log::info('mentorImage_0:'. $request->file('mentorImage_0'));
-    // Log::info('mentorImage_0:'. $request->file('mentorImage_0'));
-    // Log::info('mentorImage_0:'. $request->file('testImg'));
 
 
     Log::info('courseImage:'. $request->file('courseImage'));
 
-    // Файл courseImage
-    if ($request->hasFile('courseImage')) {
-        $file = $request->file('courseImage');
-        $filename = $file->getClientOriginalName();
-        $path = $file->storeAs('uploads', $filename, 'public');
-        Log::info("Файл courseImage сохранён: " . $path);
-    } else {
-        Log::info("Файл courseImage не передан.");
-    }
-
-    return response()->json([
-        'message' => 'Данные получены',
-        'courseCards' => $courseCards,
-        'mentorCards' => $mentorCards,
-        'filename' => $filename ?? null,
-    ], 200);
+    return response()->json(true, 200);
 
     }
 

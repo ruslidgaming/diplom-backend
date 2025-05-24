@@ -15,6 +15,8 @@ class Course extends Model
         'mini_description',
         'description',
         'image',
+        'slogan',
+        'course_info',
         'admin_id',
     ];
 
