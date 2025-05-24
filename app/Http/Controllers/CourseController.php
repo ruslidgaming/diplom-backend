@@ -111,4 +111,12 @@ class CourseController extends Controller
 
         return response()->json(true, 201);
     }
+
+    public function catalog(Request $request) {
+        $id = $request->idUser;
+
+        $courses = Course::where('admin_id', $id)->get();
+
+        return response()->json($courses, 200);
+    }
 }

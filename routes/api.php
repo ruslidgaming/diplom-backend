@@ -31,7 +31,9 @@ Route::middleware('admin.auth')->group(function () {
 Route::post('/admin/register', [AdminController::class, 'register']);
 Route::post('/admin/login', [AdminController::class, 'login']);
 
-Route::get('admin/{id}/course', [AdminController::class, 'course']);
+Route::get('/admin/course/catalog/{id}', [CourseController::class, 'catalog']);
+
+// Route::get('admin/{id}/course', [AdminController::class, 'course']);
 
 Route::post('/mentor/login', [MentorController::class, 'login']);
 Route::post('/mentor/logout', [MentorController::class, 'logout']);
