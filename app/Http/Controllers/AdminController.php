@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\log;
@@ -53,7 +54,6 @@ class AdminController extends Controller
 
         );
 
-
         $user = Admin::create($user);
 
         return response()->json(['user' => $user], 201);
@@ -64,36 +64,11 @@ class AdminController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        Log::info('Admin auth middleware', [
-            'check' => auth('admin-api')->check(),
-            'user' => auth('admin-api')->user(),
-            'token' => $request->bearerToken(),
-        ]);
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->route('');
+        };
 
-        if (!$token = auth('admin-api')->attempt($credentials)) {
-            return response()->json(['error' => 'Неверный email или пароль'], 401);
-        }
-
-        // Генерация refresh token
-        $refreshToken = Str::random(128);
-        $expiresAt = now()->addDays(7); // Срок жизни refresh token
-
-        // Сохраняем refresh token в БД
-        Db::table('refresh_tokens')->insert([
-            'token' => $refreshToken,
-            'admin_id' => auth('admin-api')->id(),
-            'expires_at' => $expiresAt,
-        ]);
-        $user = auth('admin-api')->user();
-        $user->role = 'admin';
-
-        return response()->json([
-            'access_token' => $token,
-            'refresh_token' => $refreshToken,
-            'token_type' => 'bearer',
-            'expires_in' => config('jwt.ttl') * 3600,
-            'user' => $user,
-        ]);
+        return
     }
 
     public function refresh(Request $request)
