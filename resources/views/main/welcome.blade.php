@@ -5,7 +5,7 @@
         <div class="banner__container container">
             <div class="banner__text">
                 <h1 class='h1'>Сделай знания доступными с помощью платформы <span> Фенек</span></h1>
-                <a href="" class='banner__btn _btn _blue'>Открыть курс</a>
+                <a href="{{ route('register') }}" class='banner__btn _btn _blue'>Открыть курс</a>
             </div>
 
             <div class="banner__left">
