@@ -113,7 +113,6 @@
                         'label' => 'Название училища',
                     ])
 
-<<<<<<< HEAD
                     <!-- Пароль -->
                     <div class="regLog__textarea">
                         <label>
@@ -124,7 +123,6 @@
                                 <button type="button" class="input-password__icon" onclick="togglePassword(this)">
                                     👁
                                 </button>
-=======
                 @include('components.Input', [
                     'class' => 'regLog__input',
                     'required' => true,

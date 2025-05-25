@@ -12,5 +12,5 @@
     </div>
 </div>
 @error($name)
-    <p style='color: "red"'>{{ $message }}</p>
+    <p style='color: red'>{{ $message }}</p>
 @enderror
