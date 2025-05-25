@@ -1,0 +1,354 @@
+// ===ОБЩИЕ КЛАССЫ===
+// Ограничитель контента
+
+:root {
+    --clr-orange: #fe9400;
+    --clr-blue: #1e5eff;
+    --clr-black: #17181c;
+    --clr-darkgray: #2c2d33;
+    --clr-fon: #f5f5f5;
+    --clr-fon-profile: #f5f6fa;
+}
+
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+
+    &._course {
+        padding: 0 !important;
+        max-width: 1070px;
+        margin: 0 auto 0 0;
+    }
+
+    @media (max-width: em(1480, 16)) {
+        padding: 0 40px;
+    }
+
+    @media (max-width: em($mPoint-4, 16)) {
+        padding: 0 30px;
+    }
+
+    @media (max-width: em($mPoint-5, 16)) {
+        padding: 0 20px;
+    }
+}
+
+.section {
+    padding-top: 140px;
+}
+
+.padding-footer {
+    padding-bottom: 80px;
+}
+
+.input {
+    &__title {
+        color: var(--clr-black);
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    &__input {
+        border: 1px solid rgb(209, 209, 209);
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+
+        &._error {
+            border: 1px solid red;
+        }
+
+        & input,
+        & textarea {
+            width: 100%;
+            padding: 10px;
+
+            &:focus .input__input {
+                border: 1px solid var(--clr-black);
+            }
+        }
+    }
+
+    &-password__icon {
+        margin-right: 10px;
+        cursor: pointer;
+    }
+}
+
+._btn {
+    display: inline-block;
+    text-align: center;
+    font-family: "Unbounded";
+    font-weight: 400;
+    font-size: 20px !important;
+    cursor: pointer;
+
+    &._blue {
+        color: white;
+        background-color: var(--clr-blue);
+        border-radius: 4px;
+
+        @media (min-width: em($mPoint-4, 16)) {
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+
+    &._blue-text {
+        color: var(--clr-blue);
+    }
+
+    @media (max-width: em($mPoint-5, 16)) {
+        font-size: 16px !important;
+    }
+
+    &._red {
+        background-color: #ff233c;
+        color: white;
+        border-radius: 4px;
+
+        @media (min-width: em($mPoint-4, 16)) {
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+}
+
+.h1 {
+    font-family: var(--font-unbounded);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: prc(60, 48);
+
+    & span {
+        color: var(--clr-blue);
+    }
+
+    @media (max-width: em($mPoint-3, 16)) {
+        font-size: 28px;
+    }
+    @media (max-width: em($mPoint-6, 16)) {
+        font-size: 20px;
+    }
+}
+
+.h2 {
+    font-family: var(--font-unbounded);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: prc(60, 48);
+
+    & span {
+        color: var(--clr-blue);
+    }
+
+    @media (max-width: em($mPoint-5, 16)) {
+        font-size: 32px;
+    }
+}
+.h3 {
+    font-family: var(--font-unbounded);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: prc(60, 48);
+
+    & span {
+        color: var(--clr-blue);
+    }
+
+    @media (max-width: em($mPoint-5, 16)) {
+        font-size: 28px;
+    }
+}
+.h4 {
+    font-family: var(--font-unbounded);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 110%;
+
+    & span {
+        color: var(--clr-blue);
+    }
+
+    @media (max-width: em($mPoint-5, 16)) {
+        font-size: 28px;
+    }
+}
+
+.form {
+    &__container {
+        background-color: white;
+
+        padding: 48px 60px;
+        border-radius: 10px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        max-width: 540px;
+        width: 100%;
+
+        @media (max-width: em(620, 16)) {
+            padding: 30px 20px;
+        }
+
+        @media (max-width: em($mPoint-5, 16)) {
+            padding: 48px 20px;
+        }
+    }
+
+    &__title {
+        text-align: center;
+        @include adaptivePoints(margin-bottom, 50px, 50px, 30px);
+    }
+
+    &__body,
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    &__inputs {
+    }
+    &__actions {
+    }
+    &__button {
+        width: 100%;
+        padding: 15px 0;
+    }
+}
+
+.list-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__item {
+        padding: 15px;
+        border-radius: 15px;
+        background-color: var(--clr-fon);
+    }
+}
+
+.search {
+    & .input__input {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        cursor: pointer;
+        transform: translateY(3px);
+    }
+}
+
+.static {
+    &__carts {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+    &__cart {
+    }
+
+    &__section {
+        margin-bottom: 80px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    &__btns {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    &__btn {
+        font-size: 14px;
+        padding: 5px 10px 7px 10px;
+        border-radius: 10px;
+        color: lightgray;
+        border: 1px solid lightgray;
+        cursor: pointer;
+        @media (min-width: em($mPoint-4, 16)) {
+            &:hover {
+                background-color: lightgray;
+                color: white;
+            }
+        }
+
+        &._active {
+            border-color: var(--clr-blue);
+            background-color: var(--clr-blue);
+            color: white;
+        }
+
+        &-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+    &__chart {
+    }
+}
+.cart-static {
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.268);
+    display: flex;
+    gap: 15px;
+
+    &._active {
+        color: white;
+        background-color: var(--clr-blue);
+
+        & .cart-static__icon {
+            background-color: white;
+
+            & path {
+                fill: var(--clr-blue);
+            }
+        }
+    }
+
+    &__icon {
+        background-color: var(--clr-blue);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        width: 50px;
+        height: 50px;
+
+        & svg {
+            width: 24px;
+            height: 24px;
+
+            & path {
+                fill: white;
+            }
+        }
+    }
+    &__info {
+    }
+    &__name {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+    &__count {
+        font-family: var(--font-unbounded);
+        font-size: 20px;
+        font-weight: 500;
+    }
+}

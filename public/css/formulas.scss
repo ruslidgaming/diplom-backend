@@ -1,0 +1,41 @@
+// Переменные для медиа запросов,
+$mPoint-1: 1560;
+$mPoint-2: 1366;
+$mPoint-3: 1170;
+$mPoint-4: 991;
+$mPoint-5: 769;
+$mPoint-6: 468;
+
+// Функции для перевода px в %, rem, em
+@function prc($pxOne, $pxTwo) {
+    $result: $pxOne / $pxTwo * 100%;
+    @return $result;
+}
+
+@function rem($px) {
+    $result: $px / 16 + rem;
+    @return $result;
+}
+
+@function em($pxOne, $pxTwo) {
+    $result: $pxOne / $pxTwo + em;
+    @return $result;
+}
+
+//* Адаптивный калькулятор
+@mixin razmer($property, $startSize, $minSize) {
+    $addSize: $startSize - $minSize;
+    #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / (1920 - 320)));
+}
+
+//* Адаптив по точкам
+@mixin adaptivePoints($property, $startSize, $middleSize, $minSize) {
+    #{$property}: $startSize;
+
+    @media (max-width: em($mPoint-5, 16)) {
+        #{$property}: $middleSize;
+    }
+    @media (max-width: em($mPoint-6, 16)) {
+        #{$property}: $minSize;
+    }
+}

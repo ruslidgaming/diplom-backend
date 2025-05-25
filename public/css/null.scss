@@ -1,0 +1,124 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	scroll-behavior: smooth;
+	transition: 0.3s;
+}
+
+*,
+*:before,
+*:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+:focus,
+:active {
+	outline: none;
+}
+
+a:focus,
+a:active {
+	outline: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section {
+	display: block;
+}
+
+html {
+	font-size: 16px;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font-weight: 400;
+	font-family: $commonFont;
+	color: var(--clr-black);
+	text-rendering: optimizeLegibility;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+	background-color: var(--clr-fon);
+}
+
+input,
+button,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	background: transparent;
+	color: inherit;
+}
+
+textarea {
+	color: var(--clr-black);
+	resize: none;
+}
+
+/* Для браузеров, использующих WebKit (Chrome, Safari) */
+textarea::-webkit-scrollbar {
+	width: 0;
+}
+
+/* Для остальных браузеров */
+textarea {
+	scrollbar-width: none;
+}
+
+input::-ms-clear {
+	display: none;
+}
+
+input::placeholder {
+	color: #a8a8a8;
+}
+
+button {
+	cursor: pointer;
+	font-family: inherit;
+	background-color: inherit;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+	color: inherit;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+ul li {
+	list-style: none;
+}
+
+img {
+	vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 400;
+	color: var(--clr-black);
+}
