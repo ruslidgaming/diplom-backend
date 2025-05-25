@@ -21,31 +21,30 @@
         <div class="about__items">
             <div class="about__item item-about">
                 <div class="item-about__icon">
-                    <AboutIcons name="constructor" />
+                    @include('components.Icons', ['name' => 'constructor'])
                 </div>
                 <p class="item-about__title">Конструктор</p>
                 <p class='item-about__text'>Создай свой лендинг с помощью конструктора</p>
             </div>
             <div class="about__item item-about">
                 <div class="item-about__icon">
-                    <AboutIcons name="security-user" />
-
+                    @include('components.Icons', ['name' => 'security-user'])
                 </div>
                 <p class="item-about__title">Панель администратора</p>
                 <p class='item-about__text'>Всё управление в личном кабинете</p>
             </div>
             <div class="about__item item-about">
                 <div class="item-about__icon">
-                    <AboutIcons name="teacher" />
+                    @include('components.Icons', ['name' => 'teacher'])
                 </div>
                 <p class="item-about__title">Личный кабинет учеников</p>
                 <p class='item-about__text'>Для ваших клиентов есть доступ к материалам</p>
             </div>
             <div class="about__item item-about">
                 <div class="item-about__icon">
-                    <AboutIcons name="mentor" />
+                    @include('components.Icons', ['name' => 'mentor'])
                 </div>
-                <p class="item-about__title">Менторы</p>
+                <p class="item-about__title">Менторы</p>    
                 <p class='item-about__text'>Нанимайте менторов для поддержки учеников</p>
             </div>
         </div>
@@ -57,7 +56,7 @@
         <div class="projects__items">
             <div class="projects__item item-projects">
                 <div class="item-projects__img">
-                    <img src={logo} alt="" />
+                    <img src={{ asset('img/logo.svg') }} alt="" />
                 </div>
                 <div class="item-projects__title">Компании</div>
                 <p class="item-projects__text">Корпоративное обучение сотрудников. Создавайте онлайн-курсы и
@@ -67,7 +66,7 @@
             </div>
             <div class="projects__item item-projects">
                 <div class="item-projects__img">
-                    <img src={logo} alt="" />
+                    <img src={{ asset('img/logo.svg') }} alt="" />
                 </div>
                 <div class="item-projects__title">Блогеры</div>
                 <p class="item-projects__text">Прокачали свою экспертизу и готовы заработать на своих знаниях?
@@ -77,7 +76,7 @@
 
             <div class="projects__item item-projects">
                 <div class="item-projects__img">
-                    <img src={logo} alt="" />
+                    <img src={{ asset('img/logo.svg') }} alt="" />
                 </div>
                 <div class="item-projects__title">Эксперты и коучи</div>
                 <p class="item-projects__text">
@@ -88,7 +87,7 @@
             </div>
             <div class="projects__item item-projects">
                 <div class="item-projects__img">
-                    <img src={logo} alt="" />
+                    <img src={{ asset('img/logo.svg') }} alt="" />
                 </div>
                 <div class="item-projects__title">Онлайн-школы и стартапы</div>
                 <p class="item-projects__text">
@@ -104,45 +103,46 @@
         <div class="container">
             <section class='black-fon__logo'>
                 <div class='black-fon__logo-img'>
-                    <img src={logo} alt="" />
+                    <img src={{ asset('img/logo.svg') }} alt="" />
                 </div>
             </section>
-
 
             <section class='constructor' id='constructor'>
                 <div class="constructor__title h2">Создай свой лендинг на простом <span>конструкторе</span>
                 </div>
-                <Swiper ref={swiperRef} spaceBetween={slidesPerBetween} slidesPerView={slidesPerView} loop={false}
-                    class="constructor__items">
-                    <SwiperSlide class="constructor__item item-constructor">
-                        <div class="item-constructor__img">
-                            <img src={sliderContr} alt="" />
+                <div class="constructor__items swiper">
+                    <div class="swiper-wrapper">
+                        <div class="constructor__item item-constructor swiper-slide">
+                            <div class="item-constructor__img">
+                                <img src={{ asset('img/swiper-constr.jpg') }} alt="" />
+                            </div>
+                            <div class="item-constructor__number">01</div>
+                            <p class="item-constructor__title">Выбор шаблона</p>
                         </div>
-                        <div class="item-constructor__number">01</div>
-                        <p class="item-constructor__title">Выбор шаблона</p>
-                    </SwiperSlide>
-                    <SwiperSlide class="constructor__item item-constructor">
-                        <div class="item-constructor__img">
-                            <img src={sliderContr} alt="" />
+                        <div class="constructor__item item-constructor swiper-slide">
+                            <div class="item-constructor__img">
+                                <img src={{ asset('img/swiper-constr.jpg') }} alt="" />
+                            </div>
+                            <div class="item-constructor__number">02</div>
+                            <p class="item-constructor__title">Выбор шаблона</p>
                         </div>
-                        <div class="item-constructor__number">02</div>
-                        <p class="item-constructor__title">Выбор шаблона</p>
-                    </SwiperSlide>
-                    <SwiperSlide class="constructor__item item-constructor">
-                        <div class="item-constructor__img">
-                            <img src={sliderContr} alt="" />
+                        <div class="constructor__item item-constructor swiper-slide">
+                            <div class="item-constructor__img">
+                                <img src={{ asset('img/swiper-constr.jpg') }} alt="" />
+                            </div>
+                            <div class="item-constructor__number">03</div>
+                            <p class="item-constructor__title">Выбор шаблона</p>
                         </div>
-                        <div class="item-constructor__number">03</div>
-                        <p class="item-constructor__title">Выбор шаблона</p>
-                    </SwiperSlide>
-                    <SwiperSlide class="constructor__item item-constructor">
-                        <div class="item-constructor__img">
-                            <img src={sliderContr} alt="" />
+                        <div class="constructor__item item-constructor swiper-slide">
+                            <div class="item-constructor__img">
+                                <img src={{ asset('img/swiper-constr.jpg') }} alt="" />
+                            </div>
+                            <div class="item-constructor__number">04</div>
+                            <p class="item-constructor__title">Выбор шаблона</p>
                         </div>
-                        <div class="item-constructor__number">04</div>
-                        <p class="item-constructor__title">Выбор шаблона</p>
-                    </SwiperSlide>
-                </Swiper>
+                    </div>
+
+                </div>
 
                 <div class="constructor__btns">
                     <button class="constructor__btn btn-prev" onClick={slideClickPrev}>

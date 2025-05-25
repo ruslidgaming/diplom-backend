@@ -9,7 +9,18 @@
 
 // =====Подключение общих стилей=====
 @import "common.scss";
+#root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
 .logo {
     display: flex;
     align-items: center;
