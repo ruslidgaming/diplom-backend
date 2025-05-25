@@ -107,12 +107,12 @@ return (isLoading ?
         </div>
     </section>
     {<section class="banner-show__technologies _py" id="teacher">
-        <div className="teacher__header">
+        <div class="teacher__header">
             <h2 class="technologies__title _700"><span>Ваши</span> наставники</h2>
-            <div className="constructor__btns">
+            <div class="constructor__btns">
                 {showCourseTeacherData?.length > 4 &&
                 <>
-                    <button className="constructor__btn btn-prev" onClick={slideClickPrev}>
+                    <button class="constructor__btn btn-prev" onClick={slideClickPrev}>
                         <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect width="70" height="70" rx="35" fill="white" />
@@ -121,7 +121,7 @@ return (isLoading ?
                                 fill="#17181C" />
                         </svg>
                     </button>
-                    <button className="constructor__btn btn-prev" onClick={slideClickNext}>
+                    <button class="constructor__btn btn-prev" onClick={slideClickNext}>
                         <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect width="70" height="70" rx="35" transform="matrix(-1 0 0 1 70 0)"
@@ -135,13 +135,13 @@ return (isLoading ?
                 }
             </div>
         </div>
-        <div className="container _course">
-            <Swiper ref={swiperRef} spaceBetween={30} slidesPerView={4} loop={false} className="teacher__cards">
+        <div class="container _course">
+            <Swiper ref={swiperRef} spaceBetween={30} slidesPerView={4} loop={false} class="teacher__cards">
 
 
 
                 {showCourseTeacherData?.map((item, index) => (
-                <SwiperSlide key={index} className="teacher__card teacher-card _fonBack-navy__blue">
+                <SwiperSlide key={index} class="teacher__card teacher-card _fonBack-navy__blue">
                     <div class="teacher-card__img">
                         <img src={`http://127.0.0.1:8000/storage/${item.image}`} alt="" />
                     </div>

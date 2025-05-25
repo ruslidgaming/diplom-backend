@@ -15,61 +15,61 @@ setStaticSections(staticSections === name ? "" : name)
 }
 
 return <>
-    <div className="static-many static">
-        <div className="static__carts">
-            <div className={`static__cart cart-static ${staticSections=='course' && "_active" }`} onClick={()=>
+    <div class="static-many static">
+        <div class="static__carts">
+            <div class={`static__cart cart-static ${staticSections=='course' && "_active" }`} onClick={()=>
                 CheckSetStaticSections('course')}>
-                <div className="cart-static__icon">
+                <div class="cart-static__icon">
                     <ProfileIcon name="admin" />
                 </div>
-                <div className="cart-static__info">
-                    <div className="cart-static__name">Кол-во курсов</div>
-                    <div className="cart-static__count">420</div>
+                <div class="cart-static__info">
+                    <div class="cart-static__name">Кол-во курсов</div>
+                    <div class="cart-static__count">420</div>
                 </div>
             </div>
-            <div className={`static__cart cart-static ${staticSections=='lessons' && "_active" }`} onClick={()=>
+            <div class={`static__cart cart-static ${staticSections=='lessons' && "_active" }`} onClick={()=>
                 CheckSetStaticSections('lessons')}>
-                <div className="cart-static__icon">
+                <div class="cart-static__icon">
                     <ProfileIcon name="users" />
                 </div>
-                <div className="cart-static__info">
-                    <div className="cart-static__name">Кол-во уроков</div>
-                    <div className="cart-static__count">9500</div>
+                <div class="cart-static__info">
+                    <div class="cart-static__name">Кол-во уроков</div>
+                    <div class="cart-static__count">9500</div>
                 </div>
             </div>
         </div>
 
         {(staticSections == "" || staticSections == 'course') &&
-        <div className="static__section">
-            <div className="static__title">Кол-во курсов</div>
+        <div class="static__section">
+            <div class="static__title">Кол-во курсов</div>
 
-            <div className="static__btns">
-                <div className="static__btn-text">Группировать по </div>
-                <div className="static__btn">дням</div>
-                <div className="static__btn">неделям</div>
-                <div className="static__btn">меясцам</div>
-                <div className="static__btn">годам</div>
+            <div class="static__btns">
+                <div class="static__btn-text">Группировать по </div>
+                <div class="static__btn">дням</div>
+                <div class="static__btn">неделям</div>
+                <div class="static__btn">меясцам</div>
+                <div class="static__btn">годам</div>
             </div>
 
-            <div className="static__chart">
+            <div class="static__chart">
                 <LineChart />
             </div>
         </div>
         }
 
         {(staticSections == "" || staticSections == 'lessons') &&
-        <div className="static__section">
-            <div className="static__title">Кол-во уроков</div>
+        <div class="static__section">
+            <div class="static__title">Кол-во уроков</div>
 
-            <div className="static__btns">
-                <div className="static__btn-text">Группировать по </div>
-                <div className="static__btn _active">дням</div>
-                <div className="static__btn">неделям</div>
-                <div className="static__btn">меясцам</div>
-                <div className="static__btn">годам</div>
+            <div class="static__btns">
+                <div class="static__btn-text">Группировать по </div>
+                <div class="static__btn _active">дням</div>
+                <div class="static__btn">неделям</div>
+                <div class="static__btn">меясцам</div>
+                <div class="static__btn">годам</div>
             </div>
 
-            <div className="static__chart">
+            <div class="static__chart">
                 <LineChart />
             </div>
         </div>

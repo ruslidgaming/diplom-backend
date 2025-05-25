@@ -143,13 +143,13 @@ function CoursesForm() {
     };
 
     return (
-        <div className="addcours">
+        <div class="addcours">
             <div>
-                <div className="addcours__title">Оформление карточки</div>
+                <div class="addcours__title">Оформление карточки</div>
 
-                <div className="addcours-card__face _fonBack-navy__blue">
+                <div class="addcours-card__face _fonBack-navy__blue">
                     <div>
-                        <div className="addcours-card__img">
+                        <div class="addcours-card__img">
                             <input
                                 type="file"
                                 id="cours__foto"
@@ -170,7 +170,7 @@ function CoursesForm() {
                             <label htmlFor="cours__foto">
                                 {courseImagePreview ? (
                                     <img
-                                        className="addcours-card__face-img"
+                                        class="addcours-card__face-img"
                                         src={courseImagePreview}
                                         alt="Preview"
                                         style={{ width: 350, height: 350, objectFit: 'cover' }}
@@ -185,10 +185,10 @@ function CoursesForm() {
                         </div>
                     </div>
 
-                    <div className="addcours-card__face-inps">
-                        <DivInput className="addcours__inp" label={<p>Название</p>}>
+                    <div class="addcours-card__face-inps">
+                        <DivInput class="addcours__inp" label={<p>Название</p>}>
                             <input
-                                className="addcours-card__face-inp"
+                                class="addcours-card__face-inp"
                                 placeholder="Название"
                                 {...register("title", validationRules.title)}
                             />
@@ -196,10 +196,10 @@ function CoursesForm() {
                         {errors.title && (
                             <p style={{ color: "red" }}>{errors.title.message}</p>
                         )}
-                        <DivInput className="addcours__inp" label={<p>Цена</p>}>
+                        <DivInput class="addcours__inp" label={<p>Цена</p>}>
                             <input
                                 type="number"
-                                className="addcours-card__face-inp"
+                                class="addcours-card__face-inp"
                                 placeholder="Цена"
                                 {...register("price", validationRules.price)}
                             />
@@ -208,9 +208,9 @@ function CoursesForm() {
                             <p style={{ color: "red" }}>{errors.price.message}</p>
                         )}
 
-                        <DivInput className="addcours__inp _textarea" label={<p>Описание для карточки</p>}>
+                        <DivInput class="addcours__inp _textarea" label={<p>Описание для карточки</p>}>
                             <textarea
-                                className="addcours-card__face-inp"
+                                class="addcours-card__face-inp"
                                 placeholder="Описание карточки"
                                 {...register("cardDescription", validationRules.cardDescription)}
                             />
@@ -221,10 +221,10 @@ function CoursesForm() {
                     </div>
                 </div>
 
-                <div className="addcours__title">Слоган для баннера</div>
-                <div className="addcours__about _slogan _fonBack-navy__blue">
+                <div class="addcours__title">Слоган для баннера</div>
+                <div class="addcours__about _slogan _fonBack-navy__blue">
                     <textarea
-                        className="addcours__about-textarea"
+                        class="addcours__about-textarea"
                         placeholder="Слоган"
                         {...register("slogan", validationRules.slogan)}
                     />
@@ -233,10 +233,10 @@ function CoursesForm() {
                     <p style={{ color: "red" }}>{errors.slogan.message}</p>
                 )}
 
-                <div className="addcours__title">Блок с информацией об курсе</div>
-                <div className="addcours__about _fonBack-navy__blue">
+                <div class="addcours__title">Блок с информацией об курсе</div>
+                <div class="addcours__about _fonBack-navy__blue">
                     <textarea
-                        className="addcours__about-textarea"
+                        class="addcours__about-textarea"
                         placeholder="О курсе"
                         {...register("aboutCourse", validationRules.aboutCourse)}
                     />
@@ -245,28 +245,28 @@ function CoursesForm() {
                     <p style={{ color: "red" }}>{errors.aboutCourse.message}</p>
                 )}
 
-                <div className="addcours__title">Карточки "Что проходим на курсе"</div>
-                <div className="addcours-info__items">
-                    <div className="addcours-info__item _create">
-                        <DivInput className="addcours-info__title">
+                <div class="addcours__title">Карточки "Что проходим на курсе"</div>
+                <div class="addcours-info__items">
+                    <div class="addcours-info__item _create">
+                        <DivInput class="addcours-info__title">
                             <input
-                                className="addcours-info__inp"
+                                class="addcours-info__inp"
                                 placeholder="Название"
 
                                 {...register("courseCardTitle")}
                             />
                         </DivInput>
 
-                        <DivInput className="addcours-info__text">
+                        <DivInput class="addcours-info__text">
                             <textarea
-                                className="addcours-info__textarea"
+                                class="addcours-info__textarea"
                                 placeholder="Описание карточки"
                                 {...register("courseCardDescription")}
                             />
                         </DivInput>
                         <button
                             type="button"
-                            className="addcours-info__create"
+                            class="addcours-info__create"
                             onClick={addCourseCard}
                         >
                             Добавить
@@ -274,12 +274,12 @@ function CoursesForm() {
                     </div>
 
                     {courseCards.map((card, index) => (
-                        <div className="addcours-info__item" key={index}>
-                            <p className="addcours-info__title">{card.title}</p>
-                            <p className="addcours-info__text">{card.description}</p>
+                        <div class="addcours-info__item" key={index}>
+                            <p class="addcours-info__title">{card.title}</p>
+                            <p class="addcours-info__text">{card.description}</p>
                             <button
                                 type="button"
-                                className="addcours-info__delete"
+                                class="addcours-info__delete"
                                 onClick={() => removeCourseCard(index)}
                             >
                                 Удалить
@@ -288,15 +288,15 @@ function CoursesForm() {
                     ))}
                 </div>
 
-                <div className="addcours__title">Блок с информацией об менторах</div>
-                <div className="addcours__mentors _fonBack-navy__blue">
-                    <div className="addcours__mentors-items">
-                        <div className="addcours__mentors-item item-mentors _create">
-                            <label className="item-mentors__foto _create">
+                <div class="addcours__title">Блок с информацией об менторах</div>
+                <div class="addcours__mentors _fonBack-navy__blue">
+                    <div class="addcours__mentors-items">
+                        <div class="addcours__mentors-item item-mentors _create">
+                            <label class="item-mentors__foto _create">
                                 <label>Фото</label>
                                 <input
                                     type="file"
-                                    className="item-mentors__foto-file"
+                                    class="item-mentors__foto-file"
                                     onChange={(e) => {
                                         const file = e.target.files[0];
                                         if (file) {
@@ -321,23 +321,23 @@ function CoursesForm() {
                                     />
                                 )}
                             </label>
-                            <DivInput className="item-mentors__title">
+                            <DivInput class="item-mentors__title">
                                 <input
-                                    className="addcours-info__inp"
+                                    class="addcours-info__inp"
                                     placeholder="Имя"
                                     {...register("mentorName")}
                                 />
                             </DivInput>
-                            <DivInput className="item-mentors__info">
+                            <DivInput class="item-mentors__info">
                                 <textarea
-                                    className="addcours-card__face-inp"
+                                    class="addcours-card__face-inp"
                                     placeholder="Описание карточки"
                                     {...register("mentorDescription")}
                                 />
                             </DivInput>
                             <button
                                 type="button"
-                                className="item-mentors__btn _btn _blue _create"
+                                class="item-mentors__btn _btn _blue _create"
                                 onClick={addMentorCard}
                             >
                                 Добавить
@@ -345,8 +345,8 @@ function CoursesForm() {
                         </div>
 
                         {mentorCards.map((mentor, index) => (
-                            <div className="addcours__mentors-item item-mentors" key={index}>
-                                <div className="item-mentors__foto">
+                            <div class="addcours__mentors-item item-mentors" key={index}>
+                                <div class="item-mentors__foto">
                                     {mentor.image ? (
                                         <img
                                             src={typeof mentor.image === 'string'
@@ -358,11 +358,11 @@ function CoursesForm() {
                                         <img src={foto} alt="Default" />
                                     )}
                                 </div>
-                                <div className="item-mentors__name">{mentor.name}</div>
-                                <div className="item-mentors__about">{mentor.description}</div>
+                                <div class="item-mentors__name">{mentor.name}</div>
+                                <div class="item-mentors__about">{mentor.description}</div>
                                 <button
                                     type="button"
-                                    className="item-mentors__btn _btn _red _create"
+                                    class="item-mentors__btn _btn _red _create"
                                     onClick={() => removeMentorCard(index)}
                                 >
                                     Удалить
@@ -372,8 +372,8 @@ function CoursesForm() {
                     </div>
                 </div>
 
-                {/* <button type="submit" className="addcours__submit" onClick={onSubmit}> */}
-                <button type="submit" className="addcours__submit" onClick={handleSubmit(onSubmit)}>
+                {/* <button type="submit" class="addcours__submit" onClick={onSubmit}> */}
+                <button type="submit" class="addcours__submit" onClick={handleSubmit(onSubmit)}>
                     Сохранить курс
                 </button>
             </div>

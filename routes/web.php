@@ -23,9 +23,13 @@ use Maatwebsite\Excel\Facades\Excel;
 |
 */
 
+Route::get('/', function () {
+    return view("main.welcome");
+});
+
 Route::middleware('admin.auth')->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'logout']);
-    
+
     Route::post('/course/add', [CourseController::class, 'add']);
     Route::get('/course/delete', [CourseController::class, 'delete']);
     Route::post('/course/update', [CourseController::class, 'update']);

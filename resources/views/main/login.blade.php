@@ -37,20 +37,20 @@ function Login() {
 
     return <>
 
-        <FromRegLog className="regLog__form" formType="login" formTitle="Авторизация" submitText="Войти" onSubmit={handleSubmit(handleSubmitForm)} disciption={
-            <p className="regLog__description">
+        <FromRegLog class="regLog__form" formType="login" formTitle="Авторизация" submitText="Войти" onSubmit={handleSubmit(handleSubmitForm)} disciption={
+            <p class="regLog__description">
                 У вас нету аккаунта? <a href="/register">Зарегистрироваться</a>
                 <br />
                 или <a href="/profile">Войти</a>
             </p>
         }>
 
-            <div className="regLog__form-btns">
-                <div className={`regLog__form-btn ${role == 'admin' && '_active'}`} onClick={() => setRole("admin")}>Админ</div>
-                <div className={`regLog__form-btn ${role == 'mentor' && '_active'}`} onClick={() => setRole("mentor")}>Ментор</div>
+            <div class="regLog__form-btns">
+                <div class={`regLog__form-btn ${role == 'admin' && '_active'}`} onClick={() => setRole("admin")}>Админ</div>
+                <div class={`regLog__form-btn ${role == 'mentor' && '_active'}`} onClick={() => setRole("mentor")}>Ментор</div>
             </div>
 
-            <DivInput className="regLog__input" label={<p>{role == 'admin' ? "Почта" : "Логин"} <span style={{ color: "red" }}>*</span></p>}>
+            <DivInput class="regLog__input" label={<p>{role == 'admin' ? "Почта" : "Логин"} <span style={{ color: "red" }}>*</span></p>}>
 
                 {role == 'admin' ?
                     <input placeholder="Почта"
@@ -81,7 +81,7 @@ function Login() {
             </DivInput>
             {errors?.email && (<p style={{ color: "red" }}>{errors?.email?.message}</p>)}
 
-            <DivInput className="regLog__textarea" label={<p>Пароль <span style={{ color: "red" }}>*</span></p>}>
+            <DivInput class="regLog__textarea" label={<p>Пароль <span style={{ color: "red" }}>*</span></p>}>
                 <input type={showPassword ? "text" : "password"} placeholder="Название училища"
                     {...register('password', {
                         required: "Поле обязательно",
@@ -95,7 +95,7 @@ function Login() {
                         }
                     })} />
 
-                <div className="input-password__icon" onClick={togglePasswordVisibility}>
+                <div class="input-password__icon" onClick={togglePasswordVisibility}>
                     <Icon name={showPassword ? "eye-slash" : "eye"} />
                 </div>
             </DivInput>

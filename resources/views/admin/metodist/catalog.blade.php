@@ -32,35 +32,35 @@ setLoadable(false)
 return isLoading ?
 <Example /> :
 <>
-    <div className="courses">
-        <div className="courses__header">
-            <DivInput className="courses__search search">
+    <div class="courses">
+        <div class="courses__header">
+            <DivInput class="courses__search search">
                 <input type="text" placeholder="Поиск..." />
                 {/* <input type="text" onChange={e=> setSearch(e.target.value)} value={search}
                 placeholder="Название училища" /> */}
 
-                <div className="search__icon">
+                <div class="search__icon">
                     <Icon name={"search"} />
                 </div>
             </DivInput>
 
-            <a className="courses__add" href={"/admin/metodists/create"}>
-                <Icon className="courses__add__icon" name={"plus"} />
+            <a class="courses__add" href={"/admin/metodists/create"}>
+                <Icon class="courses__add__icon" name={"plus"} />
                 <span>Добавить</span>
             </a>
         </div>
 
-        <div className="metodist__items">
+        <div class="metodist__items">
             {catalogList.length > 0 &&
             catalogList.map((item, index) => (
-            <div className="metodist__item item-metodist" key={index}>
-                <div className="item-metodist__img">
+            <div class="metodist__item item-metodist" key={index}>
+                <div class="item-metodist__img">
                     <img src={item.photo} alt="img" />
                 </div>
-                <div className="item-metodist__info">
-                    <div className="item-metodist__name">
+                <div class="item-metodist__info">
+                    <div class="item-metodist__name">
                         <p>{item.name}</p>
-                        <a className="item-metodist__edit" href={`/edit/${item.id}`}>
+                        <a class="item-metodist__edit" href={`/edit/${item.id}`}>
                             <svg width="42" height="42" viewBox="0 0 42 42" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -75,8 +75,8 @@ return isLoading ?
                             </svg>
                         </a>
                     </div>
-                    <div className="item-metodist__text">{item.name}</div>
-                    <div className="item-metodist__text">
+                    <div class="item-metodist__text">{item.name}</div>
+                    <div class="item-metodist__text">
                         <p>{item.password}</p>
                         <button>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -94,17 +94,17 @@ return isLoading ?
             </div>
             ))}
 
-            <div className="metodist__item item-metodist">
-                <div className="item-metodist__img">
+            <div class="metodist__item item-metodist">
+                <div class="item-metodist__img">
                     <img src={foto} alt="img" />
                 </div>
-                <div className="item-metodist__info">
-                    <DeleteModal classNameBtn={"item-metodist__delete"} icon idInfo={2} btnOnClick={deleteId}
+                <div class="item-metodist__info">
+                    <DeleteModal classBtn={"item-metodist__delete"} icon idInfo={2} btnOnClick={deleteId}
                         onConfirm={setDelete} onCancel={()=> console.log('Удаление отменено')}
                         />
-                        <div className="item-metodist__name">
+                        <div class="item-metodist__name">
                             <p>Имя</p>
-                            <a className="item-metodist__edit" href={`/edit/2`}>
+                            <a class="item-metodist__edit" href={`/edit/2`}>
                                 <svg width="42" height="42" viewBox="0 0 42 42" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -119,8 +119,8 @@ return isLoading ?
                                 </svg>
                             </a>
                         </div>
-                        <div className="item-metodist__text _login">ЛОгин</div>
-                        <div className="item-metodist__text _pass">
+                        <div class="item-metodist__text _login">ЛОгин</div>
+                        <div class="item-metodist__text _pass">
                             <SecretField value={"asdasdasd"} />
                         </div>
                 </div>

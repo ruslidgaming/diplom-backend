@@ -10,27 +10,27 @@ function ListAdmin() {
 const [foreachFor, setForeachFor] = useState(['asd', 1, 2, 3, 4, 5]);
 const { search, setSearch, searchInfo } = listAdminModel;
 return <>
-    <div className="listadmin list-column">
-        <DivInput className="listadmin__search search">
+    <div class="listadmin list-column">
+        <DivInput class="listadmin__search search">
             <input type="text" onChange={e=> setSearch(e.target.value)} value={search} placeholder="Название училища"
             />
 
-            <div onClick={searchInfo} className="search__icon">
+            <div onClick={searchInfo} class="search__icon">
                 <Icon name={"search"} />
             </div>
         </DivInput>
 
         {foreachFor.map((item, index) => {
 
-        return <div key={index} className="listadmin__item list-column__item">
-            <div className="listadmin__item-top">Фамилия и имя</div>
-            <div className="listadmin__item-bottom">
-                <p className="listadmin__item-company">Классное название компании</p>
-                <Link to={''} className="listadmin__item-site">
+        return <div key={index} class="listadmin__item list-column__item">
+            <div class="listadmin__item-top">Фамилия и имя</div>
+            <div class="listadmin__item-bottom">
+                <p class="listadmin__item-company">Классное название компании</p>
+                <Link to={''} class="listadmin__item-site">
                 <p>
                     Перейти на сайт
                 </p>
-                <div className="listadmin__item-icon">
+                <div class="listadmin__item-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
