@@ -38,7 +38,7 @@ class CourseController extends Controller
         // Course::create($val);
 
     $image = $request->file('courseImage')->store('upload', 'public');
-    $id = $request->idUser;
+    $id = auth('admin-api')->id();
     $course = Course::create([
         'name' => $request->title,
         'price' => $request->price,
@@ -69,39 +69,66 @@ class CourseController extends Controller
     }
 
     public function update(Request $request) {
-        $val = $request->validate([
-            'name' => 'required|string|max:128',
-            'price' => 'required|numeric|max:64',
-            'mini_description' => 'required|string|max:256',
-            'description' => 'required|string|max:512',
-            'image' => 'mimes:png,jpeg,svg|nullable,'
-        ], [
-            'name.required' => 'Поле "название" должно быть обязательным',
-            'price.required' => 'Поле "цена" должно быть обязательным',
-            'mini_description.required' => 'Поле "небольшое описание" должно быть обязательным',
-            'description.required' => 'Поле "описание" должно быть обязательным',
+        // $val = $request->validate([
+        //     'name' => 'required|string|max:128',
+        //     'price' => 'required|numeric|max:64',
+        //     'mini_description' => 'required|string|max:256',
+        //     'description' => 'required|string|max:512',
+        //     'image' => 'mimes:png,jpeg,svg|nullable,'
+        // ], [
+        //     'name.required' => 'Поле "название" должно быть обязательным',
+        //     'price.required' => 'Поле "цена" должно быть обязательным',
+        //     'mini_description.required' => 'Поле "небольшое описание" должно быть обязательным',
+        //     'description.required' => 'Поле "описание" должно быть обязательным',
 
-            'name.max' => 'Поле "название" не должно превышать 128 символов',
-            'price.max' => 'Поле "цена" не должно превышать 64 символа',
-            'mini_description.max' => 'Поле "небольшое описание" не должно превышать 256 символа',
-            'description.max' => 'Поле "описание" не должно превышать 512 символов',
+        //     'name.max' => 'Поле "название" не должно превышать 128 символов',
+        //     'price.max' => 'Поле "цена" не должно превышать 64 символа',
+        //     'mini_description.max' => 'Поле "небольшое описание" не должно превышать 256 символа',
+        //     'description.max' => 'Поле "описание" не должно превышать 512 символов',
 
-            'image.mimes' => 'Для изображения разрешены форматы: png, jpeg, svg',
-        ]);
+        //     'image.mimes' => 'Для изображения разрешены форматы: png, jpeg, svg',
+        // ]);
 
-        if (isset($val['image'])) {
-            $val['image'] = $request->file('image')->store('upload', 'public');
+        // if (isset($val['image'])) {
+        //     $val['image'] = $request->file('image')->store('upload', 'public');
+        // }
+
+        $image = $request->file('courseImage')->store('upload', 'public');
+        $id = auth('admin-api')->id();
+
+        $data = [
+            'name' => $request->title,
+            'price' => $request->price,
+            'mini_description' => $request->cardDescription,
+            'slogan' => $request->slogan,
+            'description' => $request->aboutCourse,
+            'course_info' => $request->courseCards,
+            'admin_id' => $id,
+        ];
+
+        if ($request->hasFile('courseImage')) {
+            $data['image'] = $request->file('courseImage')->store('upload', 'public');
         }
 
-        Course::where('id', $request->id)->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'mini_description' => $request->mini_description,
-            'description' => $request->description,
-            'image' => $val['image'],
-        ]);
+        Course::where('id', $request->id)->update($data);
+        $course = Course::where('id', $request->id)->first();
+        
 
-        return response()->json(true, 201);
+        $mentorCardsRaw = $request->input('mentorCards');
+        $mentorCards = json_decode($mentorCardsRaw, true);
+
+        $count = $request->count;
+        for ($i = 0; $i < $count; $i++) {
+            $image = $request->file('mentorImage_' . $i)->store('upload', 'public');
+            Teacher::create([
+                'name' => $mentorCards[$i]['name'],
+                'description' => $mentorCards[0]['description'],
+                'image' => $image,
+                'course_id' => $course->id,
+            ]);
+        }
+
+        return response()->json(true, 200);
     }
 
     public function delete(Request $request) {

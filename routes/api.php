@@ -29,6 +29,8 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/course/delete', [CourseController::class, 'delete']);
     Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
     Route::get('/admin/course/show', [CourseController::class, 'show']);
+
+    Route::post('/course/update', [CourseController::class, 'update']);
 });
 
 
@@ -47,7 +49,6 @@ Route::post('/student/logout', [StudentController::class, 'logout']);
 Route::post('/refresh', [AdminController::class, 'refresh']);
 Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 
-Route::post('/course/update', [CourseController::class, 'update']);
 
 Route::post('/feedback', [FeedbackController::class, 'feedback']);
 
