@@ -30,9 +30,8 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/course/delete', [CourseController::class, 'delete']);
     Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
     Route::get('/admin/course/show', [CourseController::class, 'show']);
-    Route::get('/admin/course/teacher/delete', [TeacherController::class, 'delete']);
-
     Route::post('/course/update', [CourseController::class, 'update']);
+    Route::get('/admin/course/teacher/delete', [TeacherController::class, 'delete']);
 });
 
 
