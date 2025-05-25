@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mentor;
 use DB;
 use Illuminate\Http\Request;
+use Log;
 use Str;
 
 class MentorController extends Controller
@@ -13,6 +14,9 @@ class MentorController extends Controller
     {
         
         $credentials = $request->only('login', 'password');
+        Log::channel('auth')->info('Mentor authenticated', [
+            'mentor' => auth('mentor-api')->user()->only(['id', 'name', 'email']),
+        ]);
 
         if (!$token = auth('mentor-api')->attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
