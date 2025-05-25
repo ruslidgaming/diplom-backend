@@ -82,6 +82,15 @@
                     'label' => 'Название училища',
                 ])
 
+                @include('components.Input', [
+                    'class' => 'regLog__input',
+                    'required' => true,
+                    'placeholder' => 'Название училища',
+                    'type' => 'text',
+                    'name' => 'companyName',
+                    'label' => 'Название училища',
+                ])
+
 
                 <!-- Пароль -->
                 <div class="regLog__textarea">
