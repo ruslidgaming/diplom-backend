@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="form__container regLog__form form-login">
+        <div class="form__container regLog__form form-register">
             <h2 class="form__title h3">Регистрация</h2>
             <form class="form__body" method="POST" action="/register">
                 @csrf
@@ -28,7 +28,6 @@
 
                     @include('components.Input', [
                         'class' => 'regLog__input',
-                        'required' => false,
                         'placeholder' => 'Отчество',
                         'type' => 'text',
                         'name' => 'oldname',
@@ -85,17 +84,16 @@
                         'name' => 'password_confirmation',
                         'label' => 'Повторите пароль',
                     ])
+                </div>
+                <!-- Кнопка отправки -->
+                <div class="form__actions">
+                    <button type="submit" class="form__button _btn _blue">Регистрация</button>
+                </div>
 
-                    <!-- Кнопка отправки -->
-                    <div class="form__actions">
-                        <button type="submit" class="form__button _btn _blue">Регистрация</button>
-                    </div>
-
-                    <div class="form__disciption">
-                        <p class="regLog__description">
-                            У вас есть аккаунт? <a href="{{ route('login') }}">Войти</a>
-                        </p>
-                    </div>
+                <div class="form__disciption">
+                    <p class="regLog__description">
+                        У вас есть аккаунт? <a href="{{ route('login') }}">Войти</a>
+                    </p>
                 </div>
             </form>
         </div>
