@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use DB;
 use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
-use Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\log;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
@@ -63,7 +64,7 @@ class AdminController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        \Log::info('Admin auth middleware', [
+        Log::info('Admin auth middleware', [
             'check' => auth('admin-api')->check(),
             'user' => auth('admin-api')->user(),
             'token' => $request->bearerToken(),
@@ -78,7 +79,7 @@ class AdminController extends Controller
         $expiresAt = now()->addDays(7); // Срок жизни refresh token
 
         // Сохраняем refresh token в БД
-        DB::table('refresh_tokens')->insert([
+        Db::table('refresh_tokens')->insert([
             'token' => $refreshToken,
             'admin_id' => auth('admin-api')->id(),
             'expires_at' => $expiresAt,
@@ -114,7 +115,9 @@ class AdminController extends Controller
         if (!$admin) {
             return response()->json(['error' => 'Администратор не найден'], 401);
         }
-        $newAccessToken = auth('admin-api')->fromUser($admin);
+        /** @var \App\Extensions\CustomGuard $auth */
+        $auth = auth('admin-api');
+        $newAccessToken = $auth->fromUser($admin);
 
         // Удаляем использованный refresh token
         DB::table('refresh_tokens')->where('token', $refreshToken)->delete();

@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Log;
 
+
 class CourseController extends Controller
 {
     public function add(Request $request) {
@@ -119,7 +120,6 @@ class CourseController extends Controller
     }
 
     public function show($id) {
-        Log::info("ID: " . $id);
 
 
         $course = Course::where('id', $id)->first();
