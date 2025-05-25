@@ -8,6 +8,7 @@ use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GptController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
@@ -29,6 +30,7 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/course/delete', [CourseController::class, 'delete']);
     Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
     Route::get('/admin/course/show', [CourseController::class, 'show']);
+    Route::get('/admin/course/teacher/delete', [TeacherController::class, 'delete']);
 
     Route::post('/course/update', [CourseController::class, 'update']);
 });
