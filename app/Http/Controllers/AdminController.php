@@ -68,14 +68,25 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
+        $val = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:8',
+        ], [
+            'email.required' => 'Поле email обязательно для заполнения',
+            'email.email' => 'Введите корректный email адрес',
+            'password.required' => 'Поле пароль обязательно для заполнения',
+            'password.string' => 'Пароль должен быть строкой',
+            'password.min' => 'Пароль должен содержать минимум 8 символов'
+        ]);
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
             return redirect()->route('index');
         };
 
-        return redirect()->route('index');
+        return redirect()->route('login');
     }
 
     public function getAdmin()
