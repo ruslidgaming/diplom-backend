@@ -40,15 +40,15 @@ return [
         'driver' => 'session',
         'provider' => 'users',
     ],
-    'admin-api' => [
+    'admin' => [
         'driver' => 'session',
         'provider' => 'admins',
     ],
-    'mentor-api' => [
+    'mentor' => [
         'driver' => 'session',
         'provider' => 'mentors',
     ],
-    'student-api' => [
+    'student' => [
         'driver' => 'session',
         'provider' => 'students',
     ],
