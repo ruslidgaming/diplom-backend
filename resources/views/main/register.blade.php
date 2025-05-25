@@ -66,7 +66,7 @@
 
 
                 @include('components.Textarea', [
-                    'class' => 'regLog__input',
+                    'class' => 'regLog__textarea',
                     'required' => true,
                     'placeholder' => 'Название училища',
                     'type' => 'text',
@@ -74,14 +74,6 @@
                     'label' => 'Название училища',
                 ])
 
-
-                <!-- Описание училища -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Описание училища <span style="color: red">*</span></p>
-                        <textarea name="companyDescription" placeholder="Описание училища" required maxlength="500"></textarea>
-                    </label>
-                </div>
 
                 @include('components.Input', [
                     'class' => 'regLog__input',

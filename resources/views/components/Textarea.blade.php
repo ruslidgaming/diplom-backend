@@ -8,9 +8,7 @@
     @endisset
 
     <div class="input__input">
-        <textarea name="{{ $name }}" placeholder="{{ $placeholder }}">
-            {{ old($name, isset($value) ? $value : '') }}
-        </textarea>
+        <textarea name="{{ $name }}" placeholder="{{ $placeholder }}" maxlength="500">{{ old($name, isset($value) ? $value : '') }}</textarea>
     </div>
 </div>
 @error($name)
