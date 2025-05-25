@@ -32,8 +32,7 @@ class AdminController extends Controller
                 'companyDescription' => 'required|string|max:1024',
                 'telephon' => 'required|string|max:20|regex:/^\+?[0-9\s\-()]{7,}$/',
                 'email' => 'required|email|unique:admins',
-                'password' => 'required|min:8',
-                'password_r' => 'required|same:password'
+                'password' => 'required|min:8|confirmed',
             ],
 
             [
@@ -57,7 +56,7 @@ class AdminController extends Controller
 
                 'email.email' => 'Поле "email" некорректно',
                 'password.min' => 'Поле "Пароль" должно быть не менее 8 символов',
-                'password_r.same' => 'Пароли не совпадают'
+                'password.confirmed' => 'Пароли не совпадают'
             ]
 
         );

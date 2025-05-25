@@ -64,31 +64,13 @@
                 ])
 
 
+
                 @include('components.Textarea', [
                     'class' => 'regLog__textarea',
                     'required' => true,
                     'placeholder' => 'Описание училища',
                     'name' => 'companyDescription',
                     'label' => 'Описание училища',
-                ])
-
-
-                @include('components.Input', [
-                    'class' => 'regLog__input',
-                    'required' => true,
-                    'placeholder' => 'Название училища',
-                    'type' => 'text',
-                    'name' => 'companyName',
-                    'label' => 'Название училища',
-                ])
-
-                @include('components.Input', [
-                    'class' => 'regLog__input',
-                    'required' => true,
-                    'placeholder' => 'Название училища',
-                    'type' => 'text',
-                    'name' => 'companyName',
-                    'label' => 'Название училища',
                 ])
 
                 @include('components.Password', [
@@ -98,6 +80,7 @@
                     'name' => 'password',
                     'label' => 'Пароль',
                 ])
+
 
                 @include('components.Password', [
                     'class' => 'regLog__textarea',
