@@ -4,7 +4,7 @@
     <div class="container">
         <div class="form__container regLog__form form-register">
             <h2 class="form__title h3">Регистрация</h2>
-            <form class="form__body" method="POST" action="/register">
+            <form class="form__body" method="POST" action="{{ route('register.action') }}">
                 @csrf
 
                 <div class="form__inputs">
@@ -38,7 +38,7 @@
                         'required' => false,
                         'placeholder' => 'Номер телефона',
                         'type' => 'tel',
-                        'name' => 'telephone',
+                        'name' => 'telephon',
                         'label' => 'Номер телефона',
                     ])
 

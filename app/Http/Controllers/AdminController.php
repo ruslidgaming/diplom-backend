@@ -63,7 +63,7 @@ class AdminController extends Controller
 
         $user = Admin::create($user);
 
-        return redirect()->route();
+        return redirect()->route('login');
     }
 
     public function login(Request $request)
@@ -72,10 +72,10 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->route('');
+            return redirect()->route('index');
         };
 
-        return redirect()->route('');
+        return redirect()->route('index');
     }
 
     public function getAdmin()

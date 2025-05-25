@@ -27,12 +27,18 @@ use PHPUnit\Framework\Attributes\Group;
 
 Route::get('/', function () {
     return view("main.welcome");
+})->name('index');
+
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/login', [AdminController::class, 'loginWeb'])->name('login');
+    Route::post('/login', [AdminController::class, 'login'])->name('login.action');
 });
 
-Route::get('/login', [AdminController::class, 'loginWeb'])->name('login');
-Route::get('/register', [AdminController::class, 'registerWeb'])->name('register');
-Route::post('/register', [AdminController::class, 'register']);
-Route::post('/login', [AdminController::class, 'login']);
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/register', 'registerWeb')->name('register');
+    Route::post('/register', 'register')->name('register.action');
+});
+
 
 Route::middleware('admin.auth')->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'logout']);
