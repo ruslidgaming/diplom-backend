@@ -11,7 +11,8 @@ use Log;
 
 class CourseController extends Controller
 {
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
         // $val = $request->validate([
         //     'name' => 'required|string|max:128',
         //     'price' => 'required|numeric|max:64',
@@ -37,38 +38,38 @@ class CourseController extends Controller
 
         // Course::create($val);
 
-    $image = $request->file('courseImage')->store('upload', 'public');
-    $id = auth('admin-api')->id();
-    $course = Course::create([
-        'name' => $request->title,
-        'price' => $request->price,
-        'mini_description' => $request->cardDescription,
-        'slogan' => $request->slogan,
-        'description' => $request->aboutCourse,
-        'course_info' => $request->courseCards,
-        'admin_id' => $id,
-        'image' => $image,
-    ]);
-
-    $mentorCardsRaw = $request->input('mentorCards');
-    $mentorCards = json_decode($mentorCardsRaw, true);
-
-    $count = $request->count;
-    for ($i = 0; $i < $count; $i++) {
-        $image = $request->file('mentorImage_' . $i)->store('upload', 'public');
-        Teacher::create([
-            'name' => $mentorCards[$i]['name'],
-            'description' => $mentorCards[0]['description'],
+        $image = $request->file('courseImage')->store('upload', 'public');
+        $id = auth('admin-api')->id();
+        $course = Course::create([
+            'name' => $request->title,
+            'price' => $request->price,
+            'mini_description' => $request->cardDescription,
+            'slogan' => $request->slogan,
+            'description' => $request->aboutCourse,
+            'course_info' => $request->courseCards,
+            'admin_id' => $id,
             'image' => $image,
-            'course_id' => $course->id,
         ]);
+
+        $mentorCardsRaw = $request->input('mentorCards');
+        $mentorCards = json_decode($mentorCardsRaw, true);
+
+        $count = $request->count;
+        for ($i = 0; $i < $count; $i++) {
+            $image = $request->file('mentorImage_' . $i)->store('upload', 'public');
+            Teacher::create([
+                'name' => $mentorCards[$i]['name'],
+                'description' => $mentorCards[0]['description'],
+                'image' => $image,
+                'course_id' => $course->id,
+            ]);
+        }
+
+        return response()->json(true, 200);
     }
 
-    return response()->json(true, 200);
-
-    }
-
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
         // $val = $request->validate([
         //     'name' => 'required|string|max:128',
         //     'price' => 'required|numeric|max:64',
@@ -110,9 +111,9 @@ class CourseController extends Controller
             $data['image'] = $request->file('courseImage')->store('upload', 'public');
         }
 
-        Course::where('id', $request->id)->update($data);
-        $course = Course::where('id', $request->id)->first();
-        
+        Course::where('id', $request->idCourse)->update($data);
+        $course = Course::where('id', $request->idCourse)->first();
+
 
         $mentorCardsRaw = $request->input('mentorCards');
         $mentorCards = json_decode($mentorCardsRaw, true);
@@ -131,13 +132,15 @@ class CourseController extends Controller
         return response()->json(true, 200);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
         Course::where('id', $request->id)->delete();
 
         return response()->json(true, 201);
     }
 
-    public function catalog(Request $request) {
+    public function catalog(Request $request)
+    {
         $adminId = auth('admin-api')->id();
 
 
@@ -146,7 +149,8 @@ class CourseController extends Controller
         return response()->json(['courses' => $courses], 200);
     }
 
-    public function show(Request $request) {
+    public function show(Request $request)
+    {
         $id = $request->id;
         // Log::info('Request data: ', $request->all());
 
