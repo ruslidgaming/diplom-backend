@@ -27,6 +27,8 @@ Route::get('/', function () {
     return view("main.welcome");
 });
 
+
+
 Route::middleware('admin.auth')->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'logout']);
 

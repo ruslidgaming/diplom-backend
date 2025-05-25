@@ -68,7 +68,7 @@ class AdminController extends Controller
             return redirect()->route('');
         };
 
-        return
+        return;
     }
 
     public function refresh(Request $request)
