@@ -124,6 +124,8 @@ class CourseController extends Controller
 
         $course = Course::where('id', $id)->first();
 
-        return response()->json($course, 200);
+        $teachers = Teacher::where('course_id', $id)->get();
+
+        return response()->json(['course' => $course, 'teachers' => $teachers], 200);
     }
 }
