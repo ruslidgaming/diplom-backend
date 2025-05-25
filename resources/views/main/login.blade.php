@@ -36,9 +36,7 @@
 
                     <div class="form__disciption">
                         <p class="regLog__description">
-                            У вас нету аккаунта? <a href="/register">Зарегистрироваться</a>
-                            <br />
-                            или <a href="/profile">Войти</a>
+                            У вас нету аккаунта? <a href="{{ route('register') }}">Зарегистрироваться</a>
                         </p>
                     </div>
                 </div>
