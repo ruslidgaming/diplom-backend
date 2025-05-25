@@ -60,7 +60,6 @@ class MentorController extends Controller
 
         $user = Mentor::create([
             'name' => $request->name,
-            'surname' => $request->surname,
             'login' => $request->login,
             'password' => $request->password,
             'admin_id' => $request->id,
