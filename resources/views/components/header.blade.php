@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header__container container">
-        <a href="/" class="header__logo logo">
+        <a href="http://localhost:5173/" class="header__logo logo">
             <div class="logo__img">
                 <img src="{{ asset('img/logo.svg') }}" alt="logo" />
             </div>
