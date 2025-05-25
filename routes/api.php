@@ -26,14 +26,13 @@ use Maatwebsite\Excel\Facades\Excel;
 Route::middleware('admin.auth')->group(function () {
     Route::post('/admin/logout', [AdminController::class, 'logout']);
     Route::post('/course/add', [CourseController::class, 'add']);
+    Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
+    Route::get('/admin/course/show', [CourseController::class, 'show']);
 });
 
 
 Route::post('/admin/register', [AdminController::class, 'register']);
 Route::post('/admin/login', [AdminController::class, 'login']);
-
-Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
-Route::get('/admin/course/show/{id}', [CourseController::class, 'show']);
 
 Route::post('/mentor/login', [MentorController::class, 'login']);
 Route::post('/mentor/logout', [MentorController::class, 'logout']);
