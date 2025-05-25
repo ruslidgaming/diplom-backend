@@ -68,59 +68,14 @@ class AdminController extends Controller
             return redirect()->route('');
         };
 
-        return
+        return redirect()->route('');
     }
 
-    public function refresh(Request $request)
-    {
-        $refreshToken = $request->input('refresh_token');
-
-        // Проверяем refresh token в БД
-        $tokenRecord = DB::table('refresh_tokens')
-            ->where('token', $refreshToken)
-            ->where('expires_at', '>', now())
-            ->first();
-
-        if (!$tokenRecord) {
-            return response()->json(['error' => 'Недействительный refresh token'], 401);
-        }
-
-        // Авторизуем администратора
-        $admin = Admin::find($tokenRecord->admin_id);
-        if (!$admin) {
-            return response()->json(['error' => 'Администратор не найден'], 401);
-        }
-        /** @var \App\Extensions\CustomGuard $auth */
-        $auth = auth('admin-api');
-        $newAccessToken = $auth->fromUser($admin);
-
-        // Удаляем использованный refresh token
-        DB::table('refresh_tokens')->where('token', $refreshToken)->delete();
-
-        // Генерируем новый refresh token
-        $newRefreshToken = Str::random(128);
-        DB::table('refresh_tokens')->insert([
-            'token' => $newRefreshToken,
-            'admin_id' => $admin->id,
-            'expires_at' => now()->addDays(7),
-        ]);
-        $admin->role = 'admin';
-
-        return response()->json([
-            'access_token' => $newAccessToken,
-            'refresh_token' => $newRefreshToken,
-            'token_type' => 'bearer',
-            'expires_in' => config('jwt.ttl') * 120,
-            'user' => $admin,
-        ]);
-    }
     public function getAdmin(Request $request)
     {
+        $adminId = Auth::guard('admin')->id();
         $token = $request;
 
-        $user = JWTAuth::setToken($token)->authenticate();
-
-        return response()->json(['user' => $user], 201);
     }
 
     public function logout()
@@ -128,9 +83,5 @@ class AdminController extends Controller
         auth('admin-api')->logout();
 
         return response()->json(true, 201);
-    }
-
-    public function course() {
-
     }
 }
