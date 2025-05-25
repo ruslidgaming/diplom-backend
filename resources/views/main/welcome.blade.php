@@ -5,8 +5,9 @@
         <div class="banner__container container">
             <div class="banner__text">
                 <h1 class='h1'>Сделай знания доступными с помощью платформы <span> Фенек</span></h1>
-                <Link to="" class='banner__btn _btn _blue'>Открыть курс</Link>
+                <a href="" class='banner__btn _btn _blue'>Открыть курс</a>
             </div>
+
             <div class="banner__left">
                 <div class="banner__img">
                     <img src={{ asset('img/banner.png') }} alt="banner img" />
@@ -62,7 +63,7 @@
                 <p class="item-projects__text">Корпоративное обучение сотрудников. Создавайте онлайн-курсы и
                     обучающие модули внутри вашей компании. Удобная аналитика, отслеживание прогресса и
                     сертификация.</p>
-                <Link to="#" class='item-projects__btn _btn _blue-text'>Узнать тариф</Link>
+                <a href="#" class='item-projects__btn _btn _blue-text'>Узнать тариф</a>
             </div>
             <div class="projects__item item-projects">
                 <div class="item-projects__img">
@@ -71,7 +72,7 @@
                 <div class="item-projects__title">Блогеры</div>
                 <p class="item-projects__text">Прокачали свою экспертизу и готовы заработать на своих знаниях?
                     Запускайте свою школу у нас!</p>
-                <Link to="#" class='item-projects__btn _btn _blue-text'>Узнать тариф</Link>
+                <a href="#" class='item-projects__btn _btn _blue-text'>Узнать тариф</a>
             </div>
 
             <div class="projects__item item-projects">
@@ -83,7 +84,7 @@
                     Монетизируйте свои знания. Создавайте обучающие программы, продвигайте личный бренд и
                     привлекайте учеников. Никаких технических сложностей — только вы и ваши знания.
                 </p>
-                <Link to="#" class='item-projects__btn  _btn _blue-text'>Узнать тариф</Link>
+                <a href="#" class='item-projects__btn  _btn _blue-text'>Узнать тариф</a>
             </div>
             <div class="projects__item item-projects">
                 <div class="item-projects__img">
@@ -94,7 +95,7 @@
                     Быстрый запуск образовательного продукта. Идеально подходит для запуска собственной
                     онлайн-школы: всё от сайта до платформы для обучения уже готово.
                 </p>
-                <Link to="#" class='item-projects__btn  _btn _blue-text'>Узнать тариф</Link>
+                <a href="#" class='item-projects__btn  _btn _blue-text'>Узнать тариф</a>
             </div>
         </div>
     </section>
@@ -240,7 +241,7 @@
                                 <p>нет</p>
                             </div>
                         </div>
-                        <Link to="#" class="item-rate__btn _btn _blue">Выбрать</Link>
+                        <a href="#" class="item-rate__btn _btn _blue">Выбрать</a>
                     </div>
                     <div class="rate__item item-rate">
                         <div class="item-rate__name">Школа</div>
@@ -262,7 +263,7 @@
                                 <p>есть</p>
                             </div>
                         </div>
-                        <Link to="#" class="item-rate__btn _btn _blue">Выбрать</Link>
+                        <a href="#" class="item-rate__btn _btn _blue">Выбрать</a>
                     </div>
                     <div class="rate__item item-rate">
                         <div class="item-rate__name">Академия</div>
@@ -284,7 +285,7 @@
                                 <p>есть</p>
                             </div>
                         </div>
-                        <Link to="#" class="item-rate__btn _btn _blue">Выбрать</Link>
+                        <a href="#" class="item-rate__btn _btn _blue">Выбрать</a>
                     </div>
                 </div>
             </section>
@@ -309,8 +310,8 @@
                 </DivInput>
                 <button class='feedback__btn _btn _blue'>Отправить</button>
                 <p class='feedback__discreption'>Нажимая кнопку, принимаю
-                    <Link to="#">условия политики</Link> и
-                    <Link to="#">пользовательского соглашения</Link>
+                    <a href="#">условия политики</a> и
+                    <a href="#">пользовательского соглашения</a>
                 </p>
             </form>
         </div>

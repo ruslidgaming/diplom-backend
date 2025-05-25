@@ -1,42 +1,3 @@
-import { observer } from "mobx-react-lite";
-import loginModel from "./models/login-model.jsx";
-import FromRegLog from "../../layout/components/form.jsx";
-import DivInput from "../../../core/UIKit/input.jsx";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import Icon from "../../../core/UIKit/icons.jsx";
-import { useAuth } from "../../../core/hoc/AuthProvider.jsx";
-import { useForm } from "react-hook-form";  
-
-function Login() {
-    const { setLogin, role, setRole } = loginModel;
-
-    const { signin } = useAuth();
-
-    const [showPassword, setShowPassword] = useState(false);
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(prevState => !prevState);
-    }
-    const {
-        register,
-        formState: {
-            errors,
-            isValid,
-            isSubmitting,
-        },
-        handleSubmit,
-        getValues,
-    } = useForm({
-        mode: "onSubmit",
-    });
-
-    const handleSubmitForm = (data) => {
-        setLogin(signin, data)
-    }
-
-    return <>
-
         <FromRegLog class="regLog__form" formType="login" formTitle="Авторизация" submitText="Войти" onSubmit={handleSubmit(handleSubmitForm)} disciption={
             <p class="regLog__description">
                 У вас нету аккаунта? <a href="/register">Зарегистрироваться</a>
@@ -102,9 +63,3 @@ function Login() {
             {errors?.password && (<p style={{ color: "red" }}>{errors?.password?.message}</p>)}
 
         </FromRegLog>
-
-    </>
-
-}
-
-export default observer(Login);

@@ -1,85 +1,108 @@
-        <FromRegLog class="regLog__form" formType="register" formTitle="Регистрация" submitText={isSubmitting ? "Регистрация..." : "Регистрация"} onSubmit={handleSubmit(setRegister)} disciption={
-            <p class="regLog__description">
-                У вас есть аккаунт? <a href="/login">Войти</a>
-            </p>
-        }>
+@extends('layouts.main')
 
-            <DivInput class="regLog__textarea" label={<p>Фамилия <span style={{ color: "red" }}>*</span></p>}>
-                <input type="text" placeholder="Фамилия"/>
-            </DivInput>
-            {errors?.surname && (<p style={{ color: "red" }}>{errors?.surname?.message}</p>)}
+@section('content')
+    <form class="regLog__form" method="POST" action="/register">
+        <!-- CSRF-токен для защиты (если используете Laravel) -->
+        @csrf
 
-            <DivInput class="regLog__textarea" label={<p>Имя <span style={{ color: "red" }}>*</span></p>}>
-                <input type="text" placeholder="Имя"/>
-            </DivInput>
-            {errors?.name && (<p style={{ color: "red" }}>{errors?.name?.message}</p>)}
+        <h2>Регистрация</h2>
 
-            <DivInput class="regLog__textarea" label={<p>Отчество</p>}>
-                <input type="text" placeholder="Отчество"/>
-            </DivInput>
-            {errors?.oldname && (<p style={{ color: "red" }}>{errors?.oldname?.message}</p>)}
+        <!-- Фамилия -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Фамилия <span style="color: red">*</span></p>
+                <input type="text" name="surname" placeholder="Фамилия" required>
+            </label>
+        </div>
 
-            <DivInput class="regLog__textarea" label={<p>Номер телефона <span style={{ color: "red" }}>*</span></p>}>
-                <input
-                    type="tel"
-                    placeholder="Номер телефона"/>
-            </DivInput>
-            {errors?.telephon && (<p style={{ color: "red" }}>{errors?.telephon?.message}</p>)}
+        <!-- Имя -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Имя <span style="color: red">*</span></p>
+                <input type="text" name="name" placeholder="Имя" required>
+            </label>
+        </div>
 
-            <DivInput class="regLog__textarea" label={<p>Почта <span style={{ color: "red" }}>*</span></p>}>
-                <input placeholder="Почта"
-                    type="email"/>
-            </DivInput>
-            {errors?.email && (<p style={{ color: "red" }}>{errors?.email?.message}</p>)}
+        <!-- Отчество -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Отчество</p>
+                <input type="text" name="oldname" placeholder="Отчество">
+            </label>
+        </div>
 
-            <DivInput class="regLog__textarea" label={<p>Название училища</p>}>
-                <input type="text" placeholder="Название училища" />
-            </DivInput>
-            {errors?.companyName && (<p style={{ color: "red" }}>{errors?.companyName?.message}</p>)}
+        <!-- Телефон -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Номер телефона <span style="color: red">*</span></p>
+                <input type="tel" name="telephone" placeholder="Номер телефона" required>
+            </label>
+        </div>
 
-            <DivInput class="regLog__textarea" label={<p>Описание училища <span style={{ color: "red" }}>*</span></p>}>
-                <textarea placeholder="Описание училища" onChange={e => setCompanyDescription(e.target.value)}
-                    {...register('companyDescription', {
-                        required: "Поле обязательно",
-                        maxLength: {
-                            value: 500,
-                            message: "Максимум 500 символов",
-                        }
-                    })}
-                ></textarea>
-            </DivInput>
-            {errors?.companyDescription && (<p style={{ color: "red" }}>{errors?.companyDescription?.message}</p>)}
+        <!-- Email -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Почта <span style="color: red">*</span></p>
+                <input type="email" name="email" placeholder="Почта" required>
+            </label>
+        </div>
 
-            <DivInput class="regLog__textarea" label={<p>Пароль <span style={{ color: "red" }}>*</span></p>}>
-                <input type={showPassword ? "text" : "password"} placeholder="Пароль"
-                    {...register('password', {
-                        required: "Поле обязательно",
-                        maxLength: {
-                            value: 20,
-                            message: "Максимум 20 символов",
-                        },
-                        minLength: {
-                            value: 6,
-                            message: "Минимум 6 символов",
-                        }
-                    })} />
+        <!-- Название училища -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Название училища</p>
+                <input type="text" name="companyName" placeholder="Название училища">
+            </label>
+        </div>
 
-                <div class="input-password__icon" onClick={togglePasswordVisibility}>
-                    <Icon name={showPassword ? "eye-slash" : "eye"} />
+        <!-- Описание училища -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Описание училища <span style="color: red">*</span></p>
+                <textarea name="companyDescription" placeholder="Описание училища" required maxlength="500"></textarea>
+            </label>
+        </div>
+
+        <!-- Пароль -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Пароль <span style="color: red">*</span></p>
+                <div style="position: relative">
+                    <input type="password" name="password" placeholder="Пароль" required minlength="6" maxlength="20">
+                    <button type="button" class="input-password__icon" onclick="togglePassword(this)">
+                        👁
+                    </button>
                 </div>
-            </DivInput>
-            {errors?.password && (<p style={{ color: "red" }}>{errors?.password?.message}</p>)}
+            </label>
+        </div>
 
-            <DivInput class="regLog__textarea" label={<p>Повторите пароль <span style={{ color: "red" }}>*</span></p>}>
-                <input type={showPassword_r ? "text" : "password"} placeholder="Повторите пароль"
-                    {...register('password_r', {
-                        required: "Поле обязательно",
-                        validate: (value) => value === getValues('password') || "Пароли не совпадают",
-                    })} />
-
-                <div class="input-password__icon" onClick={togglePasswordVisibility_r}>
-                    <Icon name={showPassword_r ? "eye-slash" : "eye"} />
+        <!-- Повтор пароля -->
+        <div class="regLog__textarea">
+            <label>
+                <p>Повторите пароль <span style="color: red">*</span></p>
+                <div style="position: relative">
+                    <input type="password" name="password_confirmation" placeholder="Повторите пароль" required>
+                    <button type="button" class="input-password__icon" onclick="togglePassword(this)">
+                        👁
+                    </button>
                 </div>
-            </DivInput>
-            {errors?.showPassword_r && (<p style={{ color: "red" }}>{errors?.showPassword_r?.message}</p>)}
-        </FromRegLog>
+            </label>
+        </div>
+
+        <!-- Кнопка отправки -->
+        <button type="submit">Регистрация</button>
+
+        <!-- Ссылка на вход -->
+        <p class="regLog__description">
+            У вас есть аккаунт? <a href="/login">Войти</a>
+        </p>
+    </form>
+
+    <script>
+        function togglePassword(button) {
+            const input = button.previousElementSibling;
+            input.type = input.type === 'password' ? 'text' : 'password';
+            button.textContent = input.type === 'password' ? '👁' : '🙈';
+        }
+    </script>
+@endsection

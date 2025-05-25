@@ -9,8 +9,10 @@ use App\Http\Controllers\GptController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Facades\Excel;
+use PHPUnit\Framework\Attributes\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +29,10 @@ Route::get('/', function () {
     return view("main.welcome");
 });
 
-Route::get('/admin/login', [AdminController::class, 'loginWeb'])->name('admin/login');
-
+Route::get('/login', [AdminController::class, 'loginWeb'])->name('login');
+Route::get('/register', [AdminController::class, 'registerWeb'])->name('register');
+Route::post('/register', [AdminController::class, 'register']);
+Route::post('/login', [AdminController::class, 'login']);
 
 Route::middleware('admin.auth')->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'logout']);
@@ -47,13 +51,8 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/update', [MentorController::class, 'update']);
 });
 
-
-Route::post('/admin/register', [AdminController::class, 'register']);
-Route::post('/admin/login', [AdminController::class, 'login']);
-
 Route::post('/mentor/login', [MentorController::class, 'login']);
 Route::post('/mentor/logout', [MentorController::class, 'logout']);
-
 
 Route::post('/student/login', [StudentController::class, 'login']);
 Route::post('/student/register', [StudentController::class, 'register']);
