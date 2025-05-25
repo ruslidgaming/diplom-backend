@@ -10,7 +10,43 @@
                 <h2>Регистрация</h2>
 
                 @include('components.Input', [
-                    'class' => 'regLog__input _switch',
+                    'class' => 'regLog__input',
+                    'required' => true,
+                    'placeholder' => 'Фамилия',
+                    'type' => 'text',
+                    'name' => 'surname',
+                    'label' => 'Фамилия',
+                ])
+
+                @include('components.Input', [
+                    'class' => 'regLog__input',
+                    'required' => true,
+                    'placeholder' => 'Имя',
+                    'type' => 'text',
+                    'name' => 'name',
+                    'label' => 'Имя',
+                ])
+
+                @include('components.Input', [
+                    'class' => 'regLog__input',
+                    'required' => false,
+                    'placeholder' => 'Отчество',
+                    'type' => 'text',
+                    'name' => 'oldname',
+                    'label' => 'Отчество',
+                ])
+
+                @include('components.Input', [
+                    'class' => 'regLog__input',
+                    'required' => false,
+                    'placeholder' => 'Номер телефона',
+                    'type' => 'tel',
+                    'name' => 'telephone',
+                    'label' => 'Номер телефона',
+                ])
+
+                @include('components.Input', [
+                    'class' => 'regLog__input',
                     'required' => true,
                     'placeholder' => 'Почта',
                     'type' => 'email',
@@ -18,53 +54,26 @@
                     'label' => 'Почта',
                 ])
 
-                <!-- Фамилия -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Фамилия <span style="color: red">*</span></p>
-                        <input type="text" name="surname" placeholder="Фамилия" required>
-                    </label>
-                </div>
 
-                <!-- Имя -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Имя <span style="color: red">*</span></p>
-                        <input type="text" name="name" placeholder="Имя" required>
-                    </label>
-                </div>
+                @include('components.Input', [
+                    'class' => 'regLog__input',
+                    'required' => true,
+                    'placeholder' => 'Название училища',
+                    'type' => 'text',
+                    'name' => 'companyName',
+                    'label' => 'Название училища',
+                ])
 
-                <!-- Отчество -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Отчество</p>
-                        <input type="text" name="oldname" placeholder="Отчество">
-                    </label>
-                </div>
 
-                <!-- Телефон -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Номер телефона <span style="color: red">*</span></p>
-                        <input type="tel" name="telephone" placeholder="Номер телефона" required>
-                    </label>
-                </div>
+                @include('components.Textarea', [
+                    'class' => 'regLog__input',
+                    'required' => true,
+                    'placeholder' => 'Название училища',
+                    'type' => 'text',
+                    'name' => 'companyName',
+                    'label' => 'Название училища',
+                ])
 
-                <!-- Email -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Почта <span style="color: red">*</span></p>
-                        <input type="email" name="email" placeholder="Почта" required>
-                    </label>
-                </div>
-
-                <!-- Название училища -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Название училища</p>
-                        <input type="text" name="companyName" placeholder="Название училища">
-                    </label>
-                </div>
 
                 <!-- Описание училища -->
                 <div class="regLog__textarea">
@@ -73,6 +82,15 @@
                         <textarea name="companyDescription" placeholder="Описание училища" required maxlength="500"></textarea>
                     </label>
                 </div>
+
+                @include('components.Input', [
+                    'class' => 'regLog__input',
+                    'required' => true,
+                    'placeholder' => 'Название училища',
+                    'type' => 'text',
+                    'name' => 'companyName',
+                    'label' => 'Название училища',
+                ])
 
                 <!-- Пароль -->
                 <div class="regLog__textarea">
