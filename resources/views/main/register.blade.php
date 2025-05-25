@@ -29,7 +29,6 @@
 
                 @include('components.Input', [
                     'class' => 'regLog__input',
-                    'required' => false,
                     'placeholder' => 'Отчество',
                     'type' => 'text',
                     'name' => 'oldname',
@@ -38,7 +37,7 @@
 
                 @include('components.Input', [
                     'class' => 'regLog__input',
-                    'required' => false,
+                    'required' => true,
                     'placeholder' => 'Номер телефона',
                     'type' => 'tel',
                     'name' => 'telephone',
@@ -66,22 +65,13 @@
 
 
                 @include('components.Textarea', [
-                    'class' => 'regLog__input',
+                    'class' => 'regLog__textarea',
                     'required' => true,
-                    'placeholder' => 'Название училища',
-                    'type' => 'text',
-                    'name' => 'companyName',
-                    'label' => 'Название училища',
+                    'placeholder' => 'Описание училища',
+                    'name' => 'companyDescription',
+                    'label' => 'Описание училища',
                 ])
 
-
-                <!-- Описание училища -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Описание училища <span style="color: red">*</span></p>
-                        <textarea name="companyDescription" placeholder="Описание училища" required maxlength="500"></textarea>
-                    </label>
-                </div>
 
                 @include('components.Input', [
                     'class' => 'regLog__input',
@@ -91,6 +81,7 @@
                     'name' => 'companyName',
                     'label' => 'Название училища',
                 ])
+
 
                 <!-- Пароль -->
                 <div class="regLog__textarea">
