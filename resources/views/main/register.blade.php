@@ -115,9 +115,6 @@
                             <div class="input-password__icon" onclick="togglePassword(this)">
                                 <img class="icon" src="{{ asset('img/icons/eye.svg') }}" alt="">
                             </div>
-                            <button type="button" class="input-password__icon">
-                                👁
-                            </button>
                         </div>
                     </label>
                 </div>
@@ -127,4 +124,18 @@
             </form>
         </div>
     </div>
+
+    <script>
+        // переключатель пароля
+        function togglePassword(button) {
+            const input = button.previousElementSibling;
+            const iconoEye = button.querySelector('.icon');
+
+            console.log(iconoEye)
+
+            input.type = input.type === 'password' ? 'text' : 'password';
+            iconoEye.src = input.type === 'password' ? 'http://127.0.0.1:8000/img/icons/eye.svg' :
+                'http://127.0.0.1:8000/img/icons/eye-slash.svg';
+        }
+    </script>
 @endsection

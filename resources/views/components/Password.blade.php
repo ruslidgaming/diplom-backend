@@ -9,6 +9,9 @@
 
     <div class="input__input">
         <input type="password" name="{{ $name }}" placeholder="{{ $placeholder }}">
+        <div class="input-password__icon" onclick="togglePassword(this)">
+            <img class="icon" src="{{ asset('img/icons/eye.svg') }}" alt="">
+        </div>
     </div>
 </div>
 @error($name)
