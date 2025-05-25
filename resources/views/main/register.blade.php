@@ -54,6 +54,7 @@
                     'label' => 'Почта',
                 ])
 
+
                 @include('components.Input', [
                     'class' => 'regLog__input',
                     'required' => true,
@@ -111,7 +112,10 @@
                         <p>Повторите пароль <span style="color: red">*</span></p>
                         <div style="position: relative">
                             <input type="password" name="password_confirmation" placeholder="Повторите пароль" required>
-                            <button type="button" class="input-password__icon" onclick="togglePassword(this)">
+                            <div class="input-password__icon" onclick="togglePassword(this)">
+                                <img class="icon" src="{{ asset('img/icons/eye.svg') }}" alt="">
+                            </div>
+                            <button type="button" class="input-password__icon">
                                 👁
                             </button>
                         </div>
@@ -120,20 +124,7 @@
 
                 <!-- Кнопка отправки -->
                 <button type="submit">Регистрация</button>
-
-                <!-- Ссылка на вход -->
-                <p class="regLog__description">
-                    У вас есть аккаунт? <a href="/login">Войти</a>
-                </p>
             </form>
         </div>
     </div>
-
-    <script>
-        function togglePassword(button) {
-            const input = button.previousElementSibling;
-            input.type = input.type === 'password' ? 'text' : 'password';
-            button.textContent = input.type === 'password' ? '👁' : '🙈';
-        }
-    </script>
 @endsection

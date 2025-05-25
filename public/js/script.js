@@ -14,3 +14,10 @@ if (navClose) {
         navMenu.classList.toggle('nav__pannel-active');
     });
 }
+
+// переключатель пароля
+function togglePassword(button) {
+    const input = button.previousElementSibling;
+    input.type = input.type === 'password' ? 'text' : 'password';
+    button.textContent = input.type === 'password' ? '👁' : '🙈';
+}
