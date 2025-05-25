@@ -16,7 +16,8 @@ class Mentor extends Authenticatable implements JWTSubject
         'surname',
         'login',
         'password',
-        'admin_id'
+        'admin_id',
+        'image',
     ];
 
     protected $hidden = [

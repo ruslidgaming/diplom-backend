@@ -22,6 +22,7 @@ use Maatwebsite\Excel\Facades\Excel;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "api" middleware group. Make something great!
 |
+<<<<<<< HEAD
 */
 
 Route::middleware('admin.auth')->group(function () {
@@ -72,3 +73,6 @@ Route::get('/images/upload/{filename}', function ($filename) {
     $path = storage_path('app/public/' . $filename);
     return response()->file($path);
 });
+=======
+*/
+>>>>>>> 5a633610c41e3078f1ca7f781879e231f8a860bd
