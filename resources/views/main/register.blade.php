@@ -91,33 +91,22 @@
                     'label' => 'Название училища',
                 ])
 
+                @include('components.Password', [
+                    'class' => 'regLog__textarea',
+                    'required' => true,
+                    'placeholder' => 'Пароль',
+                    'name' => 'password',
+                    'label' => 'Пароль',
+                ])
 
-                <!-- Пароль -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Пароль <span style="color: red">*</span></p>
-                        <div style="position: relative">
-                            <input type="password" name="password" placeholder="Пароль" required minlength="6"
-                                maxlength="20">
-                            <button type="button" class="input-password__icon" onclick="togglePassword(this)">
-                                👁
-                            </button>
-                        </div>
-                    </label>
-                </div>
+                @include('components.Password', [
+                    'class' => 'regLog__textarea',
+                    'required' => true,
+                    'placeholder' => 'Повторите пароль',
+                    'name' => 'password_confirmation',
+                    'label' => 'Повторите пароль',
+                ])
 
-                <!-- Повтор пароля -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Повторите пароль <span style="color: red">*</span></p>
-                        <div style="position: relative">
-                            <input type="password" name="password_confirmation" placeholder="Повторите пароль" required>
-                            <div class="input-password__icon" onclick="togglePassword(this)">
-                                <img class="icon" src="{{ asset('img/icons/eye.svg') }}" alt="">
-                            </div>
-                        </div>
-                    </label>
-                </div>
 
                 <!-- Кнопка отправки -->
                 <button type="submit">Регистрация</button>
