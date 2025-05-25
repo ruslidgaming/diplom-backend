@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
+    public function loginWeb() {
+        return view('main.login');
+    }
     public function register(Request $request)
     {
         // as
@@ -56,7 +59,7 @@ class AdminController extends Controller
 
         $user = Admin::create($user);
 
-        return response()->json(['user' => $user], 201);
+        return redirect()->route();
     }
 
     public function login(Request $request)
@@ -71,10 +74,10 @@ class AdminController extends Controller
         return redirect()->route('');
     }
 
-    public function getAdmin(Request $request)
+    public function getAdmin()
     {
         $adminId = Auth::guard('admin')->id();
-        $token = $request;
+        // dd($adminId)
 
     }
 

@@ -39,7 +39,7 @@
             <a href="/#projects" class="nav__item">Наши клиенты</a>
             <a href="/#constructor" class="nav__item">Конструктор</a>
             <a href="/#rate" class="nav__item">Тарифы</a>
-            <a href="/login" class="nav__button _btn _blue">Войти</a>
+            <a href="{{route('admin/login')}}" class="nav__button _btn _blue">Войти</a>
         </div>
     </div>
 </header>
