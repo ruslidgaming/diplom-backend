@@ -12,8 +12,13 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function loginWeb() {
+    public function loginWeb()
+    {
         return view('main.login');
+    }
+    public function registerWeb()
+    {
+        return view('main.register');
     }
     public function register(Request $request)
     {
