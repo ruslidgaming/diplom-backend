@@ -11,6 +11,13 @@ use Log;
 
 class CourseController extends Controller
 {
+    public function index(){}
+    public function create(){}
+    public function store(Request $request){}
+    public function show(string $id){}
+    public function edit(string $id){}
+    public function update(Request $request, string $id){}
+    public function destroy(string $id){}
     public function add(Request $request)
     {
         // $val = $request->validate([
@@ -68,7 +75,7 @@ class CourseController extends Controller
         return response()->json(true, 200);
     }
 
-    public function update(Request $request)
+    public function rqew(Request $request)
     {
         // $val = $request->validate([
         //     'name' => 'required|string|max:128',
@@ -149,7 +156,7 @@ class CourseController extends Controller
         return response()->json(['courses' => $courses], 200);
     }
 
-    public function show(Request $request)
+    public function dfg(Request $request)
     {
         $id = $request->id;
         // Log::info('Request data: ', $request->all());

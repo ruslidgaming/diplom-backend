@@ -5,7 +5,8 @@
     <div class="container">
         <div class="form__container regLog__form form-login">
             <h2 class="form__title h3">Авторизация</h2>
-            <form class="form__body">
+            <form class="form__body" method="POST" action="{{ route('login.action') }}">
+                @csrf
                 <div class="form__inputs">
                     <div class="regLog__form-btns">
                         <div class="regLog__form-btn _active">Админ</div>
