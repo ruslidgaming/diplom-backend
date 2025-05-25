@@ -8,7 +8,6 @@
                 @csrf
 
                 <div class="form__inputs">
-
                     @include('components.Input', [
                         'class' => 'regLog__input',
                         'required' => true,
@@ -27,7 +26,6 @@
                         'label' => 'Имя',
                     ])
 
-<<<<<<< HEAD
                     @include('components.Input', [
                         'class' => 'regLog__input',
                         'required' => false,
@@ -36,7 +34,6 @@
                         'name' => 'oldname',
                         'label' => 'Отчество',
                     ])
-
                     @include('components.Input', [
                         'class' => 'regLog__input',
                         'required' => false,
@@ -45,24 +42,6 @@
                         'name' => 'telephone',
                         'label' => 'Номер телефона',
                     ])
-=======
-                @include('components.Input', [
-                    'class' => 'regLog__input',
-                    'placeholder' => 'Отчество',
-                    'type' => 'text',
-                    'name' => 'oldname',
-                    'label' => 'Отчество',
-                ])
-
-                @include('components.Input', [
-                    'class' => 'regLog__input',
-                    'required' => true,
-                    'placeholder' => 'Номер телефона',
-                    'type' => 'tel',
-                    'name' => 'telephone',
-                    'label' => 'Номер телефона',
-                ])
->>>>>>> 3eecb16528f6eafe1f623cfed9602c6279ba5e6c
 
                     @include('components.Input', [
                         'class' => 'regLog__input',
@@ -83,99 +62,29 @@
                         'label' => 'Название училища',
                     ])
 
-
-<<<<<<< HEAD
                     @include('components.Textarea', [
                         'class' => 'regLog__textarea',
                         'required' => true,
-                        'placeholder' => 'Название училища',
-                        'type' => 'text',
-                        'name' => 'companyName',
-                        'label' => 'Название училища',
+                        'placeholder' => 'Описание училища',
+                        'name' => 'companyDescription',
+                        'label' => 'Описание училища',
                     ])
-=======
-                @include('components.Textarea', [
-                    'class' => 'regLog__textarea',
-                    'required' => true,
-                    'placeholder' => 'Описание училища',
-                    'name' => 'companyDescription',
-                    'label' => 'Описание училища',
-                ])
->>>>>>> 3eecb16528f6eafe1f623cfed9602c6279ba5e6c
 
-
-                    @include('components.Input', [
-                        'class' => 'regLog__input',
+                    @include('components.Password', [
+                        'class' => 'regLog__textarea',
                         'required' => true,
-                        'placeholder' => 'Название училища',
-                        'type' => 'text',
-                        'name' => 'companyName',
-                        'label' => 'Название училища',
+                        'placeholder' => 'Пароль',
+                        'name' => 'password',
+                        'label' => 'Пароль',
                     ])
 
-                    <!-- Пароль -->
-                    <div class="regLog__textarea">
-                        <label>
-                            <p>Пароль <span style="color: red">*</span></p>
-                            <div style="position: relative">
-                                <input type="password" name="password" placeholder="Пароль" required minlength="6"
-                                    maxlength="20">
-                                <button type="button" class="input-password__icon" onclick="togglePassword(this)">
-                                    👁
-                                </button>
-                @include('components.Input', [
-                    'class' => 'regLog__input',
-                    'required' => true,
-                    'placeholder' => 'Название училища',
-                    'type' => 'text',
-                    'name' => 'companyName',
-                    'label' => 'Название училища',
-                ])
-
-                @include('components.Password', [
-                    'class' => 'regLog__textarea',
-                    'required' => true,
-                    'placeholder' => 'Пароль',
-                    'name' => 'password',
-                    'label' => 'Пароль',
-                ])
-
-                @include('components.Password', [
-                    'class' => 'regLog__textarea',
-                    'required' => true,
-                    'placeholder' => 'Повторите пароль',
-                    'name' => 'password_confirmation',
-                    'label' => 'Повторите пароль',
-                ])
-
-<<<<<<< HEAD
-                <!-- Повтор пароля -->
-                <div class="regLog__textarea">
-                    <label>
-                        <p>Повторите пароль <span style="color: red">*</span></p>
-                        <div style="position: relative">
-                            <input type="password" name="password_confirmation" placeholder="Повторите пароль" required>
-                            <div class="input-password__icon" onclick="togglePassword(this)">
-                                <img class="icon" src="{{ asset('img/icons/eye.svg') }}" alt="">
->>>>>>> 3eecb16528f6eafe1f623cfed9602c6279ba5e6c
-                            </div>
-                        </label>
-                    </div>
-=======
->>>>>>> a740357ea1a528e3630084f69e3516fdfa691721
-
-                    <!-- Повтор пароля -->
-                    <div class="regLog__textarea">
-                        <label>
-                            <p>Повторите пароль <span style="color: red">*</span></p>
-                            <div style="position: relative">
-                                <input type="password" name="password_confirmation" placeholder="Повторите пароль" required>
-                                <div class="input-password__icon" onclick="togglePassword(this)">
-                                    <img class="icon" src="{{ asset('img/icons/eye.svg') }}" alt="">
-                                </div>
-                            </div>
-                        </label>
-                    </div>
+                    @include('components.Password', [
+                        'class' => 'regLog__textarea',
+                        'required' => true,
+                        'placeholder' => 'Повторите пароль',
+                        'name' => 'password_confirmation',
+                        'label' => 'Повторите пароль',
+                    ])
 
                     <!-- Кнопка отправки -->
                     <div class="form__actions">
@@ -197,8 +106,6 @@
         function togglePassword(button) {
             const input = button.previousElementSibling;
             const iconoEye = button.querySelector('.icon');
-
-            console.log(iconoEye)
 
             input.type = input.type === 'password' ? 'text' : 'password';
             iconoEye.src = input.type === 'password' ? 'http://127.0.0.1:8000/img/icons/eye.svg' :
