@@ -25,13 +25,20 @@ use Maatwebsite\Excel\Facades\Excel;
 */
 
 Route::middleware('admin.auth')->group(function () {
-    Route::post('/admin/logout', [AdminController::class, 'logout']);
+    Route::get('/admin/logout', [AdminController::class, 'logout']);
+    
     Route::post('/course/add', [CourseController::class, 'add']);
     Route::get('/course/delete', [CourseController::class, 'delete']);
+    Route::post('/course/update', [CourseController::class, 'update']);
+
     Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
     Route::get('/admin/course/show', [CourseController::class, 'show']);
-    Route::post('/course/update', [CourseController::class, 'update']);
+
     Route::get('/admin/course/teacher/delete', [TeacherController::class, 'delete']);
+
+    Route::get('/mentor/catalog', [MentorController::class, 'catalog']);
+    Route::post('/mentor/create', [MentorController::class, 'create']);
+    Route::post('/mentor/update', [MentorController::class, 'update']);
 });
 
 
@@ -40,8 +47,7 @@ Route::post('/admin/login', [AdminController::class, 'login']);
 
 Route::post('/mentor/login', [MentorController::class, 'login']);
 Route::post('/mentor/logout', [MentorController::class, 'logout']);
-Route::post('/mentor/create', [MentorController::class, 'create']);
-Route::post('/mentor/update', [MentorController::class, 'update']);
+
 
 Route::post('/student/login', [StudentController::class, 'login']);
 Route::post('/student/register', [StudentController::class, 'register']);

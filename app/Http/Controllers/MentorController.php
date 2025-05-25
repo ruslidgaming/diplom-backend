@@ -103,4 +103,12 @@ class MentorController extends Controller
 
         return response()->json(true, 201);
     }
+
+    public function catalog() {
+        $id = auth('admin-api')->id();
+
+        $mentors = Mentor::where('admin_id', $id)->get();
+
+        return response()->json($mentors, 201);
+    }
 }

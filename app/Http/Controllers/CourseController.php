@@ -39,6 +39,7 @@ class CourseController extends Controller
 
     $image = $request->file('courseImage')->store('upload', 'public');
     $id = auth('admin-api')->id();
+
     $course = Course::create([
         'name' => $request->title,
         'price' => $request->price,
@@ -69,6 +70,7 @@ class CourseController extends Controller
     }
 
     public function update(Request $request) {
+        Log::info('Request data: ', $request->all());
         // $val = $request->validate([
         //     'name' => 'required|string|max:128',
         //     'price' => 'required|numeric|max:64',
@@ -93,7 +95,6 @@ class CourseController extends Controller
         //     $val['image'] = $request->file('image')->store('upload', 'public');
         // }
 
-        $image = $request->file('courseImage')->store('upload', 'public');
         $id = auth('admin-api')->id();
 
         $data = [
@@ -110,8 +111,8 @@ class CourseController extends Controller
             $data['image'] = $request->file('courseImage')->store('upload', 'public');
         }
 
-        Course::where('id', $request->id)->update($data);
-        $course = Course::where('id', $request->id)->first();
+        Course::where('id', $request->idCourse)->update($data);
+        $course = Course::where('id', $request->idCourse)->first();
         
 
         $mentorCardsRaw = $request->input('mentorCards');
