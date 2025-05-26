@@ -67,7 +67,7 @@ class AdminController extends Controller
 
         $user = Admin::create($user);
 
-        return redirect()->route('login');
+        return redirect()->route('login.admin');
     }
 
     public function login(Request $request)
