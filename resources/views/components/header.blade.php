@@ -1,6 +1,6 @@
 <header class="header">
     <div class="header__container container">
-        <a href="/" class="header__logo logo">
+        <a href="http://localhost:5173/" class="header__logo logo">
             <div class="logo__img">
                 <img src="{{ asset('img/logo.svg') }}" alt="logo" />
             </div>
@@ -39,7 +39,7 @@
             <a href="/#projects" class="nav__item">Наши клиенты</a>
             <a href="/#constructor" class="nav__item">Конструктор</a>
             <a href="/#rate" class="nav__item">Тарифы</a>
-            <a href="{{ route('login') }}" class="nav__button _btn _blue">Войти</a>
+            <a href="{{ route('login.admin.action') }}" class="nav__button _btn _blue">Войти</a>
         </div>
     </div>
 </header>

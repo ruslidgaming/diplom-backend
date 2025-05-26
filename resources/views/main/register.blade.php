@@ -92,7 +92,7 @@
 
                 <div class="form__disciption">
                     <p class="regLog__description">
-                        У вас есть аккаунт? <a href="{{ route('login') }}">Войти</a>
+                        У вас есть аккаунт? <a href="{{ route('login.admin') }}">Войти</a>
                     </p>
                 </div>
             </form>

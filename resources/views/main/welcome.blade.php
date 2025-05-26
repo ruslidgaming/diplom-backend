@@ -44,7 +44,7 @@
                 <div class="item-about__icon">
                     @include('components.Icons', ['name' => 'mentor'])
                 </div>
-                <p class="item-about__title">Менторы</p>    
+                <p class="item-about__title">Менторы</p>
                 <p class='item-about__text'>Нанимайте менторов для поддержки учеников</p>
             </div>
         </div>
@@ -145,7 +145,7 @@
                 </div>
 
                 <div class="constructor__btns">
-                    <button class="constructor__btn btn-prev" onClick={slideClickPrev}>
+                    <button class="constructor__btn btn-next">
                         <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect width="70" height="70" rx="35" fill="white" />
@@ -154,7 +154,7 @@
                                 fill="#17181C" />
                         </svg>
                     </button>
-                    <button class="constructor__btn btn-prev" onClick={slideClickNext}>
+                    <button class="constructor__btn btn-prev">
                         <svg width="70" height="70" viewBox="0 0 70 70" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <rect width="70" height="70" rx="35" transform="matrix(-1 0 0 1 70 0)"
@@ -173,24 +173,17 @@
                 <div class="system__info">
 
                     <div class="system__items">
-                        {{-- {systemItems.map((item, index) => (
-                            <div key={index} class={`system__item item-system ${activeIndex===index ? '_active' : ''
-                                }`} onClick={()=> setActiveIndex(index)}
-                                >
-                                <div class='item-system__icon'>
 
-                                    {index == 0 ?
-                                    <AboutIcons name="security-user" /> : ""}
-                                    {index == 1 ?
-                                    <AboutIcons name="teacher" /> : ""}
-                                    {index == 2 ?
-                                    <AboutIcons name="mentor" /> : ""}
-                                </div>
-
-                                <div class="item-system__title">{item.title}</div>
-                                <p class="item-system__text">{item.text}</p>
+                        <div class="system__item item-system">
+                            <div class='item-system__icon'>
+                                @include('components.Icons', ['name' => 'security-user'])
+                                @include('components.Icons', ['name' => 'teacher'])
+                                @include('components.Icons', ['name' => 'mentor'])
                             </div>
-                            ))} --}}
+
+                            <div class="item-system__title">Создавай пошаговый план курсов</div>
+                            <p class="item-system__text"></p>
+                        </div>
                     </div>
 
                     <div class="item-system _info">
@@ -200,19 +193,19 @@
 
                     <div class="system__media">
 
-                        {{-- {activeIndex === 0 &&
-                            <div class="system__img">
-                                <img src={sliderContr} alt="" />
-                            </div>
-                            }
-                            {activeIndex === 1 &&
-                            <div class="system__img">
-                                <img src={sliderContr} alt="" />
-                            </div>
-                            }
-                            {activeIndex === 2 &&
-                            <LazyVideoPlayer />
-                            } --}}
+                        <div class="system__img">
+                            <img src={{ asset('img/swiper-constr.jpg') }} alt="" />
+                        </div>
+
+                        <div class="system__img">
+                            <img src={{ asset('img/swiper-constr.jpg') }} alt="" />
+                        </div>
+                        <div class="system__video">
+                            <video width="640" height="360" controls>
+                                <source src={{ asset('img/vidoe-system.mp4') }} type="video/mp4" />
+                                Ваш браузер не поддерживает видео тег.
+                            </video>
+                        </div>
                     </div>
                 </div>
             </section>
