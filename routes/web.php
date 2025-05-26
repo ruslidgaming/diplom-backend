@@ -30,8 +30,11 @@ Route::get('/', function () {
 })->name('index');
 
 Route::controller(AdminController::class)->group(function () {
-    Route::get('/login', [AdminController::class, 'loginWeb'])->name('login');
-    Route::post('/login', [AdminController::class, 'login'])->name('login.action');
+    Route::get('/login/admin', [AdminController::class, 'loginAdmin'])->name('login.admin');
+    Route::get('/login/metodist', [AdminController::class, 'loginMetodist'])->name('login.metodist');
+
+    Route::post('/login/admin', [AdminController::class, 'loginAdminAction'])->name('login.admin.action');
+    Route::post('/login/metodist', [AdminController::class, 'loginMetodistAction'])->name('login.metodist.action');
 });
 
 Route::controller(AdminController::class)->group(function () {
@@ -57,32 +60,32 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/update', [MentorController::class, 'update']);
 });
 
-Route::post('/mentor/login', [MentorController::class, 'login']);
-Route::post('/mentor/logout', [MentorController::class, 'logout']);
+// Route::post('/mentor/login', [MentorController::class, 'login']);
+// Route::post('/mentor/logout', [MentorController::class, 'logout']);
 
-Route::post('/student/login', [StudentController::class, 'login']);
-Route::post('/student/register', [StudentController::class, 'register']);
-Route::post('/student/logout', [StudentController::class, 'logout']);
+// Route::post('/student/login', [StudentController::class, 'login']);
+// Route::post('/student/register', [StudentController::class, 'register']);
+// Route::post('/student/logout', [StudentController::class, 'logout']);
 
-Route::post('/refresh', [AdminController::class, 'refresh']);
-Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
-
-
-Route::post('/feedback', [FeedbackController::class, 'feedback']);
-
-Route::get('/export/feedback', function () {
-    return Excel::download(new FeedbackExport, 'feedback.xlsx');
-});
+// Route::post('/refresh', [AdminController::class, 'refresh']);
+// Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 
 
-Route::post('/gpt', [GptController::class, 'gpt']);
+// Route::post('/feedback', [FeedbackController::class, 'feedback']);
+
+// Route::get('/export/feedback', function () {
+//     return Excel::download(new FeedbackExport, 'feedback.xlsx');
+// });
 
 
-// Защищённые роуты (только для авторизованных)
-Route::middleware('auth:api')->group(function () {
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/me', [AuthController::class, 'me']);
-});
+// Route::post('/gpt', [GptController::class, 'gpt']);
+
+
+// // Защищённые роуты (только для авторизованных)
+// Route::middleware('auth:api')->group(function () {
+//     Route::post('/logout', [AuthController::class, 'logout']);
+//     Route::get('/me', [AuthController::class, 'me']);
+// });
 
 
 Route::get('/images/upload/{filename}', function ($filename) {

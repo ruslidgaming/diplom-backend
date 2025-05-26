@@ -16,7 +16,9 @@
 
 <body>
     <div class="wrapper">
+
         @yield('layouts')
+
     </div>
 
     <script type="module" src="{{ asset('js/script.js') }}"></script>

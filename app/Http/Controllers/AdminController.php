@@ -12,9 +12,13 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function loginWeb()
+    public function loginAdmin()
     {
-        return view('main.login');
+        return view('main.loginForm.admin-login');
+    }
+    public function loginMetodist()
+    {
+        return view('main.loginForm.metodist-login');
     }
     public function registerWeb()
     {

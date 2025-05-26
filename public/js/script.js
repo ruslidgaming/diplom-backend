@@ -18,7 +18,7 @@ if (navClose) {
     });
 }
 
-
+// СЛАЙДЕР НА ГЛАВНОМ СТРАНИЦЕ
 if (document.querySelector('.constructor__items')) {
     const swiperComments = new Swiper('.constructor__items', {
         pagination: {
@@ -49,4 +49,29 @@ if (document.querySelector('.constructor__items')) {
             }
         }
     });
+}
+
+
+const roleLoginBtns = document.querySelectorAll('.regLog__form-btn');
+const regLogInput = document.querySelector('.regLog__input._switch');
+if (roleLoginBtns) {
+    const labelTitle = regLogInput.querySelector('input__title');
+
+
+    roleLoginBtns[0].addEventListener('click', function () {
+        roleLoginBtns.forEach(btn => {
+            btn.classList.remove('_active')
+        })
+        roleLoginBtns[0].classList.add('_active')
+
+        labelTitle.textContent = "Почта"
+    })
+
+    roleLoginBtns[0].addEventListener('click', function () {
+        roleLoginBtns.forEach(btn => {
+            btn.classList.remove('_active')
+        })
+        roleLoginBtns[0].classList.add('_active')
+
+    })
 }
