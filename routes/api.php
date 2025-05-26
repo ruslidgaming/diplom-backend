@@ -23,3 +23,5 @@ use Maatwebsite\Excel\Facades\Excel;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::post('/gpt', [GptController::class, 'gpt']);

@@ -8,28 +8,32 @@ use Log;
 
 class GptController extends Controller
 {
-    public function gpt(Request $request) {
-    $apiKey = env('OPENAI_API_KEY');  // Храни ключ в .env
-    $prompt = $request->promt;
-    $maxTokens = 200;
+    public function gpt() {
+        $apiKey = env('DEEPSEEK_API_KEY');
+
         $response = Http::withHeaders([
-        'Authorization' => 'Bearer ' . $apiKey,
-        'Content-Type' => 'application/json',
-    ])->post('https://api.openai.com/v1/chat/completions', [
-        'model' => 'gpt-3.5-turbo', // или 'gpt-4'
-        'messages' => [
-            ['role' => 'user', 'content' => $prompt]
-        ],
-        'max_tokens' => $maxTokens,
-        'temperature' => 0.7,
-    ]);
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $apiKey,
+        ])->post('https://deepseekapiio.erweima.ai/api/v1/chat/completions', [
+            'model' => 'deepseek-chat',
+            'messages' => [
+                [ "role" => "system", "content" => "Ты — помощник, помогай вежливо" ],
+                [ "role" => "user", "content" => "Привет!" ],
+                [ "role" => "assistant", "content" => "Привет! Чем могу помочь?" ],
+                [ "role" => "user", "content" => "Расскажи анекдот" ]
+            ],
+            'maxTokens' => 1024,
+            // 'stream' => true, // ❌ НЕ нужно
+        ]);
 
-    if ($response->successful()) {
-        $data = $response->json();
-        return $data['choices'][0]['message']['content'] ?? 'Нет ответа от модели';
-    } else {
-        throw new \Exception('Ошибка OpenAI API: ' . $response->body());
-    }
-
+        if ($response->successful()) {
+            return response()->json($response->json());
+        } else {
+            return response()->json([
+                'error' => 'Ошибка запроса к DeepSeek',
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ], $response->status());
+        }
     }
 }

@@ -75,8 +75,6 @@ Route::get('/export/feedback', function () {
 });
 
 
-Route::post('/gpt', [GptController::class, 'gpt']);
-
 
 // Защищённые роуты (только для авторизованных)
 Route::middleware('auth:api')->group(function () {
