@@ -78,7 +78,6 @@ class MentorController extends Controller
 
         Mentor::where('id', $request->id)->update([
             'name' => $request->name,
-            'surname' => $request->surname,
             'login' => $request->login,
             'password' => $request->password,
         ]);
