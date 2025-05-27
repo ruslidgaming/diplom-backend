@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
+use App\Models\Menourse;
 use App\Models\Mentor;
 use DB;
 use Illuminate\Http\Request;
@@ -76,11 +78,29 @@ class MentorController extends Controller
             'password.min' => 'Минимальный пароль 8 символов',
         ]);
 
+        Log::debug('Request: ', $request->all());
+
+        $image = $request->file('courseImage')->store('upload', 'public');
+
+        $courses = $request->courses;
+
+        Log::debug('Courses: ' . $courses);
+
         Mentor::where('id', $request->id)->update([
             'name' => $request->name,
             'login' => $request->login,
             'password' => $request->password,
+            'image' -> $image,
         ]);
+        $mentor = Mentor::where('id', $request->id)->first();
+
+        foreach ($courses as $course) {
+            $idCourse = $course['id'];
+            Menourse::create([
+                'mentor_id' => $mentor->id,
+                'course_id' => $idCourse,
+            ]);
+        }
         $user = Mentor::where('id', $request->id)->first();
 
         return response()->json(['user' => $user], 201);

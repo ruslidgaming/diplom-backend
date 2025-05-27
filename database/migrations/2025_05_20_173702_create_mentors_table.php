@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('login')->unique();
             $table->string('password');
+            $table->string('image');
             $table->foreignId('admin_id')->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();

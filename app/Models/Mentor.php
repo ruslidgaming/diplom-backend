@@ -15,6 +15,7 @@ class Mentor extends Authenticatable implements JWTSubject
         'name',
         'login',
         'password',
+        'image',
         'admin_id'
     ];
 
