@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('mentors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('surname');
             $table->string('login')->unique();
             $table->string('password');
             $table->foreignId('admin_id')->constrained()->cascadeOnDelete();

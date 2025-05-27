@@ -13,7 +13,6 @@ class Mentor extends Authenticatable implements JWTSubject
 
     protected $fillable = [
         'name',
-        'surname',
         'login',
         'password',
         'admin_id'
