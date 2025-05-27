@@ -44,39 +44,37 @@ class MentorController extends Controller
     }
 
     public function create(Request $request) {
+        Log::debug('Request: ', $request->all());
 
         $id = auth('admin-api')->id();
 
-        Log::debug('Request', $request->all());
+        $image = $request->file('image')->store('upload', 'public');
 
-        $user = Mentor::create([
+        $coursesJson = $request->input('courses'); // Получаем JSON-строку
+        $courses = json_decode($coursesJson, true);
+
+        Log::debug('Courses: ', $courses);
+
+        $mentor = Mentor::create([
             'name' => $request->name,
-            'surname' => $request->surname,
             'login' => $request->login,
             'password' => $request->password,
-            'admin_id' => $id,
+            'image' => $image,
+            'admin_id' => $id
         ]);
+
+        foreach ($courses as $id) {
+            Menourse::create([
+                'mentor_id' => $mentor->id,
+                'course_id' => $id,
+            ]);
+        }
+        $user = Mentor::where('id', $request->id)->first();
 
         return response()->json(['user' => $user], 201);
     }
 
     public function update(Request $request){
-        $val = $request->validate([
-            'name' => 'required|string|max:64',
-            'surname' => 'required|string|max:64',
-            'login' => 'required|string|max:64',
-            'password' => 'required|min:8'
-        ],[
-            'name.required' => 'Поле "имя" обязательно',
-            'surname.required' => 'Поле "фамилия" обязательно',
-            'login.required' => 'Поле "логин" обязательно',
-            'password.required' => 'Поле "пароль" обязательно',
-
-            'name.max' => 'Поле "имя" не может превышать 64 символа',
-            'surname.max' => 'Поле "имя" не может превышать 64 символа',
-            'login.max' => 'Поле "имя" не может превышать 64 символа',
-            'password.min' => 'Минимальный пароль 8 символов',
-        ]);
 
         Log::debug('Request: ', $request->all());
 
