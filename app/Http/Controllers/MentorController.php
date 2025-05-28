@@ -21,29 +21,28 @@ class MentorController extends Controller
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
 
-        // Генерация refresh token
-        // $refreshToken = Str::random(128);
-        // $expiresAt = now()->addDays(7); // Срок жизни refresh token
-
-        // Сохраняем refresh token в БД
-        // DB::table('refresh_tokens')->insert([
-        //     'token' => $refreshToken,
-        //     'admin_id' => auth('admin-api')->id(),
-        //     'expires_at' => $expiresAt,
-        // ]);
         $user = auth('mentor-api')->user();
         $user->role = 'mentor';
 
         return response()->json([
             'access_token' => $token,
-            // 'refresh_token' => $refreshToken,
             'token_type' => 'bearer',
-            'expires_in' => config('jwt.ttl') * 120,
+            'expires_in' => config('jwt.ttl') * 3600,
             'user' => $user,
         ]);
     }
 
-    public function create(Request $request) {
+    public function catalog()
+    {
+        $id = auth('admin-api')->id();
+        $metodists = Mentor::where("admin_id", $id)->get();
+        return response()->json($metodists, 200);
+    }
+
+
+
+    public function create(Request $request)
+    {
         Log::debug('Request: ', $request->all());
 
         $id = auth('admin-api')->id();
@@ -74,7 +73,8 @@ class MentorController extends Controller
         return response()->json(['user' => $user], 201);
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
         Log::debug('Request: ', $request->all());
 
@@ -88,7 +88,7 @@ class MentorController extends Controller
             'name' => $request->name,
             'login' => $request->login,
             'password' => $request->password,
-            'image' -> $image,
+            'image'->$image,
         ]);
         $mentor = Mentor::where('id', $request->id)->first();
 
@@ -104,7 +104,17 @@ class MentorController extends Controller
         return response()->json(['user' => $user], 201);
     }
 
-    public function logout() {
+    public function delete(Request $request){
+
+        Mentor::findOrFail($request->id)->delete();
+        return response()->json([], 201);
+    }
+    public function edit(Request $request){
+        return response()->json([Mentor::findOrFail($request->id)], 201);
+    }
+
+    public function logout()
+    {
         auth('mentor-api')->logout();
 
         return response()->json(true, 201);
