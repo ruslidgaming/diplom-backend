@@ -41,8 +41,8 @@ Route::middleware('admin.auth')->group(function () {
     Route::get('/mentor/delete', [MentorController::class, 'delete']);
 
     Route::get('/mentor/edit', [MentorController::class, 'edit']);
-    Route::get('/mentor/course/delete', [MenourseController::class, 'delete']);
-    Route::get('/mentor/course/add', [MenourseController::class, 'add']);
+    Route::post('/mentor/course/delete', [MenourseController::class, 'delete']);
+    Route::post('/mentor/course/add', [MenourseController::class, 'add']);
 });
 
 
