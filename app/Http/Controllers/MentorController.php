@@ -85,9 +85,6 @@ class MentorController extends Controller
 
         Log::debug('Request: ', $request->all());
 
-
-        $courses = json_decode($request->input('courses'), true);
-
         $data = [
             'name' => $request->name,
             'login' => $request->login,
@@ -97,8 +94,8 @@ class MentorController extends Controller
             $data['password'] = $request->password;
         }
 
-        if ($request->hasFile('courseImage')) {
-            $data['image'] = $request->file('courseImage')->store('upload', 'public');
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('upload', 'public');
         }
 
         if (isset($request->password)) {
