@@ -85,25 +85,32 @@ class MentorController extends Controller
 
         Log::debug('Request: ', $request->all());
 
-        $image = $request->file('courseImage')->store('upload', 'public');
 
-        $courses = $request->courses;
+        $courses = json_decode($request->input('courses'), true);
 
-        Log::debug('Courses: ' . $courses);
-
-        Mentor::where('id', $request->id)->update([
+        $data = [
             'name' => $request->name,
             'login' => $request->login,
-            'password' => $request->password,
-            'image'->$image,
-        ]);
+        ];
+
+        if (isset($request->password)) {
+            $data['password'] = $request->password;
+        }
+
+        if ($request->hasFile('courseImage')) {
+            $data['image'] = $request->file('courseImage')->store('upload', 'public');
+        }
+
+        if (isset($request->password)) {
+            Mentor::where('id', $request->id)->update($data);
+        }
+
         $mentor = Mentor::where('id', $request->id)->first();
 
-        foreach ($courses as $course) {
-            $idCourse = $course['id'];
+        foreach ($courses as $id) {
             Menourse::create([
                 'mentor_id' => $mentor->id,
-                'course_id' => $idCourse,
+                'course_id' => $id,
             ]);
         }
         $user = Mentor::where('id', $request->id)->first();
@@ -113,11 +120,21 @@ class MentorController extends Controller
 
     public function delete(Request $request){
 
-        Mentor::findOrFail($request->id)->delete();
+        $id = $request->id;
+        Mentor::findOrFail($id)->delete();
         return response()->json([], 201);
     }
     public function edit(Request $request){
-        return response()->json([Mentor::findOrFail($request->id)], 201);
+
+        $data['metodist'] = Mentor::findOrFail($request->id);
+
+         $courseIdList = Menourse::where('mentor_id', $request->id)->get();
+
+         foreach ($courseIdList as $id) {
+            $data['courses'][] = Course::findOrFail($id);
+        }
+
+        return response()->json([$data], 201);
     }
 
     public function logout()
