@@ -13,13 +13,14 @@ class MenourseController extends Controller
         $idCourse = $request->idCourse;
         $metodistId = $request->metodistId;
 
-        Course::findOrFail($idCourse)->delete();
+        Course::findOrFail($idCourse)->menourse->delete();
+
         return response()->json(Mentor::findOrFail($metodistId)->courses, 201);
 
     }
 
     public function add(Request $request) {
-     Menourse::create([
+        Menourse::create([
                 'mentor_id' => $request->metodistId,
                 'course_id' => $request->idCourse,
             ]);
