@@ -98,9 +98,7 @@ class MentorController extends Controller
             $data['image'] = $request->file('image')->store('upload', 'public');
         }
 
-        if (isset($request->password)) {
-            Mentor::where('id', $request->id)->update($data);
-        }
+        Mentor::where('id', $request->id)->update($data);
 
         return response()->json([], 201);
     }
