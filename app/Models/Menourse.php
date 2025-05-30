@@ -14,10 +14,11 @@ class Menourse extends Model
     ];
 
     public function mentor() {
-        return $this->hasMany(Mentor::class);
+        return $this->belongsTo(Mentor::class);
     }
 
+    // Один Menourse принадлежит одному курсу
     public function course() {
-        return $this->hasMany(Course::class);
+        return $this->belongsTo(Course::class);
     }
 }

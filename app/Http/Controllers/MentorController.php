@@ -127,7 +127,7 @@ class MentorController extends Controller
     public function edit(Request $request){
 
         $mentor = Mentor::findOrFail($request->id);
-        
+
         $data['metodist'] = $mentor;
         $data['courses'] = $mentor->courses;
 
