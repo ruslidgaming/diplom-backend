@@ -17,7 +17,6 @@ class Menourse extends Model
         return $this->belongsTo(Mentor::class);
     }
 
-    // Один Menourse принадлежит одному курсу
     public function course() {
         return $this->belongsTo(Course::class);
     }

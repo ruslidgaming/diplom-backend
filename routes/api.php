@@ -38,8 +38,9 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/update', [MentorController::class, 'update']);
     Route::get('/mentor/catalog', [MentorController::class, 'catalog']);
     Route::get('/mentor/delete', [MentorController::class, 'delete']);
-    Route::get('/mentor/edit', [MentorController::class, 'edit']);
 });
+
+Route::get('/mentor/edit', [MentorController::class, 'edit']);
 
 
 Route::post('/admin/register', [AdminController::class, 'register']);

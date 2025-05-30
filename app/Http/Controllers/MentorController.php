@@ -131,7 +131,7 @@ class MentorController extends Controller
         $data['metodist'] = $mentor;
         $data['courses'] = $mentor->courses;
 
-        return response()->json([$data], 201);
+        return response()->json($data, 201);
     }
 
     public function logout()
