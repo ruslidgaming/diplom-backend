@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Menourse;
 use App\Models\Mentor;
 use DB;
+use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Str;
@@ -49,27 +50,33 @@ class MentorController extends Controller
 
         $image = $request->file('image')->store('upload', 'public');
 
-        $coursesJson = $request->input('courses'); // Получаем JSON-строку
-        $courses = json_decode($coursesJson, true);
-
-        Log::debug('Courses: ', $courses);
-
-        $mentor = Mentor::create([
-            'name' => $request->name,
-            'login' => $request->login,
-            'password' => $request->password,
-            'image' => $image,
-            'admin_id' => $id
-        ]);
-
-        foreach ($courses as $id) {
-            Menourse::create([
-                'mentor_id' => $mentor->id,
-                'course_id' => $id,
+        try {
+            $mentor = Mentor::create([
+                'name' => $request->name,
+                'login' => $request->login,
+                'password' => $request->password,
+                'image' => $image,
+                'admin_id' => $id
             ]);
         }
-        $user = Mentor::where('id', $request->id)->first();
+        catch (UniqueConstraintViolationException $e) {
+            // Обработка ошибки дублирования логина
+            return response()->json([
+                'success' => false,
+                'message' => 'Логин уже занят, выберите другой',
+                'error' => $e->getMessage()
+            ], 422);
+        }
 
+        $courses = json_decode($request->input('courses'), true);
+
+        foreach ($courses as $id) {
+                Menourse::create([
+                    'mentor_id' => $mentor->id,
+                    'course_id' => $id,
+                ]);
+            }
+        $user = Mentor::where('id', $request->id)->first();
         return response()->json(['user' => $user], 201);
     }
 
