@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GptController;
+use App\Http\Controllers\MenourseController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -38,9 +39,11 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/update', [MentorController::class, 'update']);
     Route::get('/mentor/catalog', [MentorController::class, 'catalog']);
     Route::get('/mentor/delete', [MentorController::class, 'delete']);
-});
 
-Route::get('/mentor/edit', [MentorController::class, 'edit']);
+    Route::get('/mentor/edit', [MentorController::class, 'edit']);
+    Route::get('/mentor/course/delete', [MenourseController::class, 'delete']);
+    Route::get('/mentor/course/add', [MenourseController::class, 'add']);
+});
 
 
 Route::post('/admin/register', [AdminController::class, 'register']);
