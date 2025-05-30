@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Menourse;
 use App\Models\Mentor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MenourseController extends Controller
 {
@@ -13,7 +14,7 @@ class MenourseController extends Controller
         $idCourse = $request->idCourse;
         $metodistId = $request->metodistId;
 
-        Course::findOrFail($idCourse)->menourse->delete();
+        Menourse::where('course_id', $idCourse)->where('mentor_id', $metodistId)->delete();
 
         return response()->json(Mentor::findOrFail($metodistId)->courses, 201);
 

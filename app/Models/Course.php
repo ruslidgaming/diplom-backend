@@ -24,12 +24,13 @@ class Course extends Model
         return $this->hasMany(Admin::class);
     }
 
-    public function menourse() {
-        return $this->belongsTo(Menourse::class);
-    }
-
     public function teacher() {
         return $this->belongsTo(Teacher::class);
+    }
+
+    public function menourses()
+    {
+        return $this->hasMany(Menourse::class, 'course_id');
     }
 
     public function lesson() {
