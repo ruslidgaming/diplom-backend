@@ -105,17 +105,7 @@ class MentorController extends Controller
             Mentor::where('id', $request->id)->update($data);
         }
 
-        $mentor = Mentor::where('id', $request->id)->first();
-
-        foreach ($courses as $id) {
-            Menourse::create([
-                'mentor_id' => $mentor->id,
-                'course_id' => $id,
-            ]);
-        }
-        $user = Mentor::where('id', $request->id)->first();
-
-        return response()->json(['user' => $user], 201);
+        return response()->json([], 201);
     }
 
     public function delete(Request $request){
