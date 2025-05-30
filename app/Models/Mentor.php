@@ -42,6 +42,11 @@ class Mentor extends Authenticatable implements JWTSubject
         return $this->belongsTo(Menourse::class);
     }
 
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'menourses', 'mentor_id', 'course_id');
+    }
+
     protected $casts = [
         'password' => 'hashed',
     ];

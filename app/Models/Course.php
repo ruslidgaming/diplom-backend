@@ -39,4 +39,9 @@ class Course extends Model
     public function progress() {
         return $this->belongsTo(Progress::class);
     }
+
+    public function mentors()
+    {
+        return $this->belongsToMany(Mentor::class, 'menourses', 'course_id', 'mentor_id');
+    }
 }

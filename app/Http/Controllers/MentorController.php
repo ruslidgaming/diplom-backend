@@ -126,13 +126,10 @@ class MentorController extends Controller
     }
     public function edit(Request $request){
 
-        $data['metodist'] = Mentor::findOrFail($request->id);
-
-         $courseIdList = Menourse::where('mentor_id', $request->id)->get();
-
-         foreach ($courseIdList as $id) {
-            $data['courses'][] = Course::findOrFail($id);
-        }
+        $mentor = Mentor::findOrFail($request->id);
+        
+        $data['metodist'] = $mentor;
+        $data['courses'] = $mentor->courses;
 
         return response()->json([$data], 201);
     }
