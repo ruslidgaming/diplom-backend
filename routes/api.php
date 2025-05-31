@@ -2,6 +2,7 @@
 
 use App\Exports\FeedbackExport;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
@@ -44,8 +45,12 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/course/delete', [MenourseController::class, 'delete']);
     Route::post('/mentor/course/add', [MenourseController::class, 'add']);
 
-    
+
 });
+
+Route::post('/assets/upload', [AssetController::class, 'upload']);
+Route::delete('/assets/delete', [AssetController::class, 'delete']);
+Route::get('/assets', [AssetController::class, 'index']);
 
 
 Route::post('/admin/register', [AdminController::class, 'register']);
