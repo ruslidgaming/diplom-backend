@@ -48,6 +48,19 @@ class AssetController extends Controller
 
     public function index()
     {
-        // Возвращайте ассеты, если нужно их загружать при инициализации
+        $files = Storage::files('public/assets');
+
+        $assets = array_map(function ($path) {
+            return [
+                'id' => basename($path),
+                'src' => asset(Storage::url($path)),
+                'name' => basename($path),
+                'mimeType' => Storage::mimeType($path),
+                'size' => Storage::size($path),
+                'meta' => ['uploadedAt' => now()->toISOString()]
+            ];
+        }, $files);
+
+        return response()->json($assets);
     }
 }
