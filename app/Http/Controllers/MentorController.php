@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Menourse;
 use App\Models\Mentor;
 use DB;
+use Hash;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -91,7 +92,7 @@ class MentorController extends Controller
         ];
 
         if (isset($request->password)) {
-            $data['password'] = $request->password;
+            $data['password'] = Hash::make($request->password);
         }
 
         if ($request->hasFile('image')) {
