@@ -4,11 +4,13 @@ use App\Exports\FeedbackExport;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CerteficatController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GptController;
 use App\Http\Controllers\MenourseController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Http\Request;
@@ -51,6 +53,12 @@ Route::middleware('admin.auth')->group(function () {
 Route::post('/assets/upload', [AssetController::class, 'upload']);
 Route::delete('/assets/delete', [AssetController::class, 'delete']);
 Route::get('/assets', [AssetController::class, 'index']);
+
+
+Route::get('/cerf', [CerteficatController::class, 'cerf']);
+
+Route::get('/projects/load/{id}', [ProjectController::class, 'load']);
+Route::post('/projects/store/{id}', [ProjectController::class, 'store']);
 
 
 Route::post('/admin/register', [AdminController::class, 'register']);
