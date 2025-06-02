@@ -96,3 +96,18 @@ Route::get('/images/upload/{filename}', function ($filename) {
     $path = storage_path('app/public/' . $filename);
     return response()->file($path);
 });
+
+
+
+
+
+// ФОТКА
+Route::post('/upload-image/designer', function (Request $request) {
+
+    if (!$request->hasFile('image')) {
+        return response()->json(['error' => 'No image uploaded'], 400);
+    }
+
+    $image = $request->file('image')->store('Designer', 'public');
+    return response()->json(['link' => $image]);
+});

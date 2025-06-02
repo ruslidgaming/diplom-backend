@@ -17,17 +17,21 @@ class ProjectController extends Controller
             return response()->json([], 200); // возвращаем пустой проект
         }
 
-        return response()->json($project->data);
+        return response()->json($project);
     }
 
     public function store(Request $request, $id)
     {
         $data = json_encode($request->project);
-        Log::debug($data);
+
+        $html = $request->html;
+        $css = $request->css;
+
+        Log::debug('Логи:', $request->all());
 
         $project = Project::updateOrCreate(
             ['admin_id' => auth('admin-api')->id(), 'project_id' => $id],
-            ['data' => $data]
+            ['data' => $data, 'css' => $css, 'html' => $html]
         );
 
         return response()->json(['status' => 'saved']);

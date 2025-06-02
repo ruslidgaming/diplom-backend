@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('admin_id')->unique(); // один проект на пользователя
             $table->string('project_id')->unique(); // например: 'user-project-123'
             $table->json('data'); // JSON данных проекта
+            $table->longText('html');
+            $table->longText('css');
             $table->timestamps();
         });
     }
