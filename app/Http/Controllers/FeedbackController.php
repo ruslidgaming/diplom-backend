@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    public function feedback(Request $request) {
+    public function feedback(Request $request)
+    {
         $val = $request->validate([
             'name' => 'required|string|max:64',
             'telephon' => 'required|regex:/^\+?[0-9\s\-()]{7,}$/'
@@ -26,5 +27,11 @@ class FeedbackController extends Controller
         ]);
 
         return response()->json(true, 201);
+    }
+
+    public function delete(Request $request)
+    {
+        Feedback::where('id', $request->id)->delete();
+        return response()->json(true, 200);
     }
 }

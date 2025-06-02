@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\GptController;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\MenourseController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\StudentController;
@@ -61,6 +63,7 @@ Route::post('/getAdmin', [AdminController::class, 'getAdmin']);
 
 
 Route::post('/feedback', [FeedbackController::class, 'feedback']);
+Route::get('/feedback/delete', [FeedbackController::class, 'delete']);
 
 Route::get('/export/feedback', function () {
     return Excel::download(new FeedbackExport, 'feedback.xlsx');
@@ -70,6 +73,45 @@ Route::get('/export/feedback', function () {
 Route::post('/gpt', [GptController::class, 'gpt']);
 
 
+Route::post('/upload-image', function (Request $request) {
+
+    if (!$request->hasFile('image')) {
+        return response()->json(['error' => 'No image uploaded'], 400);
+    }
+    $image = $request->file('image')->store('Editor', 'public');
+    $image = "http://127.0.0.1:8000/storage/" . $image;
+    return response()->json(['link' => $image]);
+});
+
+Route::post('/upload-image/designer', function (Request $request) {
+
+    if (!$request->hasFile('image')) {
+        return response()->json(['error' => 'No image uploaded'], 400);
+    }
+
+    $image = $request->file('image')->store('Designer', 'public');
+    return response()->json(['link' => $image]);
+});
+
+
+
+Route::get('/images/upload/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
+    return response()->file($path);
+});
+
+Route::post('/upload-video', function (Request $request) {
+
+    if (!$request->hasFile('video')) {
+        return response()->json(['error' => 'No image uploaded'], 400);
+    }
+
+    $videoPath = $request->file('video')->store('video', 'public');
+
+
+    $videoPath = "http://127.0.0.1:8000/storage/" . $videoPath;
+    return response()->json(['link' => $videoPath]);
+});
 // Защищённые роуты (только для авторизованных)
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -77,7 +119,19 @@ Route::middleware('auth:api')->group(function () {
 });
 
 
-Route::get('/images/upload/{filename}', function ($filename) {
-    $path = storage_path('app/public/' . $filename);
-    return response()->file($path);
+Route::post('/lessons/create', [LessonController::class, 'add']);
+Route::get('/lessons/catalog', [LessonController::class, 'catalog']);
+Route::get('/lessons/delete', [LessonController::class, 'delete']);
+Route::get('/lessons/show', [LessonController::class, 'show']);
+Route::post('/lessons/edit', [LessonController::class, 'edit']);
+
+Route::post('/projects', function () {
+    return response()->json("no");
 });
+Route::put('/projects', [LessonController::class, 'texting']);
+
+
+// РОУТЕРЫ СПИСКОВ
+Route::get('/list/admin', [ListController::class, 'admin']);
+Route::get('/list/feedback', [ListController::class, 'feedback']);
+// Route::get('/list/feedback', [ListController::class, 'feedback']);
