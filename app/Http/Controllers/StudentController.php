@@ -48,10 +48,10 @@ class StudentController extends Controller
 
     public function login(Request $request)
     {
-        
+
         $credentials = $request->only('email', 'password');
 
-        if (!$token = auth('admin-api')->attempt($credentials)) {
+        if (!$token = auth('student-api')->attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
 
@@ -65,7 +65,7 @@ class StudentController extends Controller
         //     'admin_id' => auth('admin-api')->id(),
         //     'expires_at' => $expiresAt,
         // ]);
-        $user = auth('admin-api')->user();
+        $user = auth('student-api')->user();
         $user->role = 'student';
 
         return response()->json([
