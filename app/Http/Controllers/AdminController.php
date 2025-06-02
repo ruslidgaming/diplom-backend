@@ -85,7 +85,6 @@ class AdminController extends Controller
             'expires_at' => $expiresAt,
         ]);
         $user = auth('admin-api')->user();
-        $user->role = 'admin';
 
         return response()->json([
             'access_token' => $token,
