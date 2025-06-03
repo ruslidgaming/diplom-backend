@@ -24,6 +24,7 @@ class MentorController extends Controller
         }
 
         $user = auth('mentor-api')->user();
+        Log::debug($user);
         $user->role = 'mentor';
 
         return response()->json([
