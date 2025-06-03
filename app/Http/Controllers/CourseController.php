@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\Mentor;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -106,9 +107,9 @@ class CourseController extends Controller
         // Log::info('Request data: ', $request->all());
 
         $course = Course::where('id', $id)->first();
-
+        $lessons = Lesson::where('course_id', $id)->get();
         $teachers = Teacher::where('course_id', $id)->get();
 
-        return response()->json(['course' => $course, 'teachers' => $teachers], 200);
+        return response()->json(['course' => $course, 'teachers' => $teachers, 'lessons' => $lessons], 200);
     }
 }

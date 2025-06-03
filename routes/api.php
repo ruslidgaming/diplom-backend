@@ -30,10 +30,11 @@ use Maatwebsite\Excel\Facades\Excel;
 |
 */
 
+Route::get('/admin/logout', [AdminController::class, 'logout']);
+Route::get('/admin/course/show', [CourseController::class, 'show']);
+
 Route::middleware('admin.auth')->group(function () {
-    Route::get('/admin/logout', [AdminController::class, 'logout']);
     Route::get('/admin/course/catalog', [CourseController::class, 'catalog']);
-    Route::get('/admin/course/show', [CourseController::class, 'show']);
     Route::get('/admin/course/teacher/delete', [TeacherController::class, 'delete']);
 
     Route::post('/course/add', [CourseController::class, 'add']);
@@ -43,13 +44,12 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/create', [MentorController::class, 'create']);
     Route::post('/mentor/update', [MentorController::class, 'update']);
     Route::get('/mentor/catalog', [MentorController::class, 'catalog']);
+    Route::get('/mentor/course', [MentorController::class, 'course']);
     Route::get('/mentor/delete', [MentorController::class, 'delete']);
 
     Route::get('/mentor/edit', [MentorController::class, 'edit']);
     Route::post('/mentor/course/delete', [MenourseController::class, 'delete']);
     Route::post('/mentor/course/add', [MenourseController::class, 'add']);
-
-
 });
 
 Route::post('/assets/upload', [AssetController::class, 'upload']);
