@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
 
@@ -72,7 +73,11 @@ class LessonController extends Controller
 
     public function catalog(Request $request)
     {
-        return response()->json(Lesson::where('course_id', $request->id)->get(), 201);
+
+        $lessons = Lesson::where('course_id', $request->id)->get();
+        $title = Course::findOrFail($request->id)->name;
+
+        return response()->json(["title" => $title, "lessons" => $lessons], 201);
     }
 
     public function show(Request $request)

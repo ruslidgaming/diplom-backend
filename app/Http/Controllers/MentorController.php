@@ -19,6 +19,7 @@ class MentorController extends Controller
 
         $credentials = $request->only('login', 'password');
 
+
         if (!$token = auth('mentor-api')->attempt($credentials)) {
             return response()->json(['error' => 'Неверный email или пароль'], 401);
         }
@@ -42,6 +43,19 @@ class MentorController extends Controller
         return response()->json($metodists, 200);
     }
 
+    public function course()
+    {
+        $id = auth('admin-api')->id();
+        $metodists = Menourse::where("mentor_id", $id)->get();
+
+        $courses = [];
+        foreach ($metodists as $value) {
+            $courses[] = Course::where('id', $value['course_id'])->first();
+        }
+
+        return response()->json(["courses" => $courses], 200);
+    }
+
 
 
     public function create(Request $request)
@@ -60,8 +74,7 @@ class MentorController extends Controller
                 'image' => $image,
                 'admin_id' => $id
             ]);
-        }
-        catch (UniqueConstraintViolationException $e) {
+        } catch (UniqueConstraintViolationException $e) {
             // Обработка ошибки дублирования логина
             return response()->json([
                 'success' => false,
@@ -73,11 +86,11 @@ class MentorController extends Controller
         $courses = json_decode($request->input('courses'), true);
 
         foreach ($courses as $id) {
-                Menourse::create([
-                    'mentor_id' => $mentor->id,
-                    'course_id' => $id,
-                ]);
-            }
+            Menourse::create([
+                'mentor_id' => $mentor->id,
+                'course_id' => $id,
+            ]);
+        }
         $user = Mentor::where('id', $request->id)->first();
         return response()->json(['user' => $user], 201);
     }
@@ -105,13 +118,15 @@ class MentorController extends Controller
         return response()->json([], 201);
     }
 
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
 
         $id = $request->id;
         Mentor::findOrFail($id)->delete();
         return response()->json([], 201);
     }
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
 
         $mentor = Mentor::findOrFail($request->id);
 
