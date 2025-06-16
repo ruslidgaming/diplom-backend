@@ -51,6 +51,9 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/course/add', [MenourseController::class, 'add']);
 });
 
+Route::get('/mentor/course', [MentorController::class, 'course']);
+
+
 Route::post('/assets/upload', [AssetController::class, 'upload']);
 Route::delete('/assets/delete', [AssetController::class, 'delete']);
 Route::get('/assets', [AssetController::class, 'index']);
