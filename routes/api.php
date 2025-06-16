@@ -44,13 +44,15 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/create', [MentorController::class, 'create']);
     Route::post('/mentor/update', [MentorController::class, 'update']);
     Route::get('/mentor/catalog', [MentorController::class, 'catalog']);
-    Route::get('/mentor/course', [MentorController::class, 'course']);
     Route::get('/mentor/delete', [MentorController::class, 'delete']);
 
     Route::get('/mentor/edit', [MentorController::class, 'edit']);
     Route::post('/mentor/course/delete', [MenourseController::class, 'delete']);
     Route::post('/mentor/course/add', [MenourseController::class, 'add']);
 });
+
+Route::get('/mentor/course', [MentorController::class, 'course']);
+
 
 Route::post('/assets/upload', [AssetController::class, 'upload']);
 Route::delete('/assets/delete', [AssetController::class, 'delete']);
