@@ -41,11 +41,11 @@ class MentorController extends Controller
         $id = auth('admin-api')->id();
         $metodists = Mentor::where("admin_id", $id)->get();
         return response()->json($metodists, 200);
+        
     }
-
     public function course()
     {
-        $id = auth('admin-api')->id();
+        $id = auth('mentor-api')->id();
         $metodists = Menourse::where("mentor_id", $id)->get();
 
         $courses = [];

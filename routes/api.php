@@ -44,7 +44,6 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/mentor/create', [MentorController::class, 'create']);
     Route::post('/mentor/update', [MentorController::class, 'update']);
     Route::get('/mentor/catalog', [MentorController::class, 'catalog']);
-    Route::get('/mentor/course', [MentorController::class, 'course']);
     Route::get('/mentor/delete', [MentorController::class, 'delete']);
 
     Route::get('/mentor/edit', [MentorController::class, 'edit']);
@@ -55,6 +54,7 @@ Route::middleware('admin.auth')->group(function () {
 Route::post('/assets/upload', [AssetController::class, 'upload']);
 Route::delete('/assets/delete', [AssetController::class, 'delete']);
 Route::get('/assets', [AssetController::class, 'index']);
+Route::get('/mentor/course', [MentorController::class, 'course']);
 
 
 Route::get('/cerf', [CerteficatController::class, 'cerf']);
@@ -72,6 +72,13 @@ Route::post('/mentor/logout', [MentorController::class, 'logout']);
 Route::post('/student/login', [StudentController::class, 'login']);
 Route::post('/student/register', [StudentController::class, 'register']);
 Route::post('/student/logout', [StudentController::class, 'logout']);
+
+Route::post('/student/pay', [StudentController::class, 'pay']);
+Route::get('/student/lessons/list', [StudentController::class, 'lessonsList']);
+Route::post('/student/finish', [StudentController::class, 'finish']);
+Route::get('/student/all', [StudentController::class, 'all']);
+Route::get('/student/my', [StudentController::class, 'my']);
+Route::get('/student/end', [StudentController::class, 'end']);
 
 Route::post('/refresh', [AdminController::class, 'refresh']);
 Route::post('/getAdmin', [AdminController::class, 'getAdmin']);

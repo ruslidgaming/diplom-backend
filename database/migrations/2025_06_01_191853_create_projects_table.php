@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('admin_id')->unique(); // один проект на пользователя
-            $table->string('project_id')->unique(); // например: 'user-project-123'
-            $table->json('data'); // JSON данных проекта
+            $table->unsignedBigInteger('admin_id')->unique();
+            $table->string('project_id')->unique();
+            $table->json('data');
             $table->longText('html');
             $table->longText('css');
             $table->timestamps();

@@ -138,6 +138,7 @@ class AdminController extends Controller
             'user' => $admin,
         ]);
     }
+    
     public function getAdmin(Request $request)
     {
         $token = $request;
