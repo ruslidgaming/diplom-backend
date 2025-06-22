@@ -14,7 +14,7 @@ class ProjectController extends Controller
         $project = Project::where('admin_id', $id)->first();
 
         if (!isset($project)) {
-            return response()->json([], 200); // возвращаем пустой проект
+            return response()->json([], 200);
         }
 
         return response()->json($project);

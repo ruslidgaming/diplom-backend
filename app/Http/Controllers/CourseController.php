@@ -96,7 +96,7 @@ class CourseController extends Controller
         $adminId = auth('admin-api')->id();
 
 
-        $courses = Course::where('admin_id', $adminId)->get();
+        $courses = Course::where('admin_id', $adminId)->orderBy('created_at', 'desc')->get();
 
         return response()->json(['courses' => $courses], 200);
     }

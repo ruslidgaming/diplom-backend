@@ -39,14 +39,14 @@ class MentorController extends Controller
     public function catalog()
     {
         $id = auth('admin-api')->id();
-        $metodists = Mentor::where("admin_id", $id)->get();
+        $metodists = Mentor::where("admin_id", $id)->orderBy('created_at', 'desc')->get();
         return response()->json($metodists, 200);
-        
     }
     public function course()
     {
         $id = auth('mentor-api')->id();
         $metodists = Menourse::where("mentor_id", $id)->get();
+
 
         $courses = [];
         foreach ($metodists as $value) {

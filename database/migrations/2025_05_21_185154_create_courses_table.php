@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
-            $table->string('mini_description');
-            $table->string('description');
-            $table->string('slogan');
+            $table->text('mini_description');
+            $table->text('description');
+            $table->text('slogan');
             $table->json('course_info');
             $table->string('image');
             $table->foreignId('admin_id')->constrained()->cascadeOnDelete();

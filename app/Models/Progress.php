@@ -16,15 +16,18 @@ class Progress extends Model
         'complete',
     ];
 
-    public function course() {
+    public function course()
+    {
         return $this->hasMany(Course::class);
     }
 
-    public function student() {
+    public function student()
+    {
         return $this->hasMany(Student::class);
     }
 
-    public function lesson() {
+    public function lesson()
+    {
         return $this->hasMany(Lesson::class);
     }
 }
