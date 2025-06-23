@@ -138,7 +138,7 @@ class AdminController extends Controller
             'user' => $admin,
         ]);
     }
-    
+
     public function getAdmin(Request $request)
     {
         $token = $request;
@@ -155,7 +155,9 @@ class AdminController extends Controller
         return response()->json(true, 201);
     }
 
-    public function course() {
-
+    public function tariff(Request $request)
+    {
+        Admin::findOrFail($request->idUser)->update(['tarif' => $request->idTariff]);
+        return response()->json(["user" => auth('admin-api')->user()], 201);
     }
 }

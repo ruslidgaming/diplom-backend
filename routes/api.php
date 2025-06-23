@@ -159,4 +159,6 @@ Route::put('/projects', [LessonController::class, 'texting']);
 // РОУТЕРЫ СПИСКОВ
 Route::get('/list/admin', [ListController::class, 'admin']);
 Route::get('/list/feedback', [ListController::class, 'feedback']);
-// Route::get('/list/feedback', [ListController::class, 'feedback']);
+
+
+Route::post('/tariff/pay', [AdminController::class, 'tariff']);
