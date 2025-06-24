@@ -17,7 +17,6 @@ class StatisticController extends Controller
     public function admin() {
 
         $id = auth('admin-api')->id();
-        $id = 1;
 
         $totalEarnings = Statistic::join('courses', 'statistics.course_id', '=', 'courses.id')
             ->where('courses.admin_id', $id)
@@ -36,7 +35,6 @@ class StatisticController extends Controller
 
     public function super() {
         $id = auth('admin-api')->id();
-        $id = 1;
 
         $EarningsStudent = Statistic::join('courses', 'statistics.course_id', '=', 'courses.id')
             ->sum('statistics.price');

@@ -134,8 +134,6 @@ class StudentController extends Controller
     {
         $id = auth('student-api')->id();
 
-        $id = 2;
-
         $courses = Course::with('lesson')->get();
 
         $completedCourses = [];
