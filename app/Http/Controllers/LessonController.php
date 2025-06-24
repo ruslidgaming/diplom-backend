@@ -91,4 +91,10 @@ class LessonController extends Controller
     {
         return response()->json($request->all());
     }
+
+    public function serteficate(Request $request)
+    {
+        
+        return response()->json($request->all());
+    }
 }

@@ -121,11 +121,11 @@ class StudentController extends Controller
 
         $id = auth('student-api')->id();
 
-        Statistic::create([
-            'student_id' => $id,
-            'course_id' => $request->idCourse,
-            'price' => $course->price
-        ]);
+        // Statistic::create([
+        //     'student_id' => $id,
+        //     'course_id' => $request->idCourse,
+        //     'price' => $course->price
+        // ]);
 
         return response()->json(201);
     }
