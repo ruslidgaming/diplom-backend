@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Statistic2;
 use Illuminate\Http\Request;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\DB;
@@ -158,6 +159,23 @@ class AdminController extends Controller
     public function tariff(Request $request)
     {
         Admin::findOrFail($request->idUser)->update(['tarif' => $request->idTariff]);
+
+        $id = auth('admin-api')->id();
+
+        $admin = Admin::findOrFail($request->idUser);
+
+        $tarifPrice = [
+            '1' => 15000,
+            '2' => 40000,
+            '3' => 120000,
+        ];
+
+        Statistic2::create([
+            'admin_id' => $id,
+            'price' => $tarifPrice[$admin->tarif]
+        ]);
+
+
         return response()->json(["user" => auth('admin-api')->user()], 201);
     }
 }

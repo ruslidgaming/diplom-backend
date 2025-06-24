@@ -13,6 +13,7 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\MenourseController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Http\Request;
@@ -162,3 +163,7 @@ Route::get('/list/feedback', [ListController::class, 'feedback']);
 
 
 Route::post('/tariff/pay', [AdminController::class, 'tariff']);
+
+
+Route::get('/statistic/admin', [StatisticController::class, 'admin']);
+Route::get('/statistic/super', [StatisticController::class, 'super']);

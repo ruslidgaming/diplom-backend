@@ -28,13 +28,18 @@ class Course extends Model
         return $this->belongsTo(Teacher::class);
     }
 
+    public function statistic() {
+        return $this->belongsTo(Statistic::class);
+    }
+
+
     public function menourses()
     {
         return $this->hasMany(Menourse::class, 'course_id');
     }
 
     public function lesson() {
-        return $this->belongsTo(Lesson::class);
+        return $this->hasMany(Lesson::class);
     }
 
     public function progress() {

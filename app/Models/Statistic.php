@@ -10,15 +10,16 @@ class Statistic extends Model
     use HasFactory;
 
     protected $fillable = [
-        'money',
-        'course',
-        'lesson',
-        'mentor',
-        'student',
-        'admin_id',
+        'student_id',
+        'course_id',
+        'price'
     ];
 
-    public function admin() {
-        return $this->hasMany(Admin::class);
+    public function student() {
+        return $this->hasMany(Student::class);
+    }
+
+    public function course() {
+        return $this->hasMany(Course::class);
     }
 }

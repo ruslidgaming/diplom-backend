@@ -28,6 +28,8 @@ class CourseController extends Controller
             'image' => $image,
         ]);
 
+        Log::debug('ПРИВЕТ', $request->all());
+
         $mentorCardsRaw = $request->input('mentorCards');
         $mentorCards = json_decode($mentorCardsRaw, true);
 
@@ -94,8 +96,7 @@ class CourseController extends Controller
     public function catalog(Request $request)
     {
         $adminId = auth('admin-api')->id();
-
-
+        
         $courses = Course::where('admin_id', $adminId)->orderBy('created_at', 'desc')->get();
 
         return response()->json(['courses' => $courses], 200);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('oldname')->nullable();
             $table->string('telephon');
             $table->string('companyName');
+            $table->integer('tarif')->default(0);
             $table->string('companyDescription');
             $table->string('email')->unique();
             $table->string('role')->default('admin');

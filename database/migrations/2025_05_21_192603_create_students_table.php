@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('telephon');
             $table->string('email');
             $table->string('password');
+            $table->unique(['admin_id', 'email']);
             $table->foreignId('admin_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

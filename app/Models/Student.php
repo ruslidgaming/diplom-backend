@@ -21,6 +21,10 @@ class Student extends Authenticatable implements JWTSubject
         'password',
     ];
 
+    public function statistic() {
+        return $this->belongsTo(Statistic::class);
+    }
+
     public function admin() {
         return $this->hasMany(Admin::class);
     }

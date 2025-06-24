@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Progress;
+use App\Models\Statistic;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class StudentController extends Controller
 {
@@ -46,6 +48,9 @@ class StudentController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'admin_id' => $request->id,
+            Rule::unique('students')->where(function ($query) use ($request) {
+            return $query->where('admin_id', $request->admin_id);
+        }),
         ]);
 
         return response()->json(['user' => $user], 201);
@@ -101,6 +106,9 @@ class StudentController extends Controller
 
     public function pay(Request $request)
     {
+
+        $course = Course::where('id', $request->idCourse)->first();
+
         $lessonsList = Lesson::where('course_id', $request->idCourse)->get();
         foreach ($lessonsList as $value) {
             Progress::create([
@@ -111,12 +119,43 @@ class StudentController extends Controller
             ]);
         }
 
+        $id = auth('student-api')->id();
+
+        Statistic::create([
+            'student_id' => $id,
+            'course_id' => $request->idCourse,
+            'price' => $course->price
+        ]);
+
         return response()->json(201);
     }
 
     public function end(Request $request)
     {
         $id = auth('student-api')->id();
+
+        $id = 2;
+
+        $courses = Course::with('lesson')->get();
+
+        $completedCourses = [];
+
+        foreach ($courses as $course) {
+            $totalLessons = $course->lesson->count();
+            if ($totalLessons == 0) continue;
+
+            // Считаем сколько уроков пройдено студентом
+            $completedLessons = Progress::where('student_id', $id)
+                ->where('course_id', $course->id)
+                ->where('complete', true)
+                ->count();
+
+            if ($completedLessons == $totalLessons) {
+                $completedCourses[] = $course;
+            }
+        }
+
+        return response()->json(["courses" => $completedCourses], 200);
     }
 
     public function finish(Request $request)

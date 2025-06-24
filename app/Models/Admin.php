@@ -37,7 +37,7 @@ class Admin extends Authenticatable implements JWTSubject
     {
         return $this->getKey();
     }
-    
+
     public function getJWTCustomClaims()
     {
         return [];
@@ -57,6 +57,10 @@ class Admin extends Authenticatable implements JWTSubject
 
     public function student() {
         return $this->belongsTo(Student::class);
+    }
+
+    public function statistic2() {
+        return $this->belongsTo(Statistic2::class);
     }
 
     public function statistic() {
