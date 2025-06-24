@@ -18,7 +18,8 @@ class Course extends Model
         'slogan',
         'course_info',
         'admin_id',
-        
+
+        'vh',
         'certificate',
         'coordinate_x',
         'coordinate_y',

@@ -29,6 +29,7 @@ class CourseController extends Controller
             'admin_id' => $id,
             'image' => $image,
 
+            'vh' => $request->vh,
             'coordinate_x' => $request->shirina,
             'coordinate_y' => $request->dlina,
             'certificate' => $certificate,
@@ -65,10 +66,17 @@ class CourseController extends Controller
             'description' => $request->aboutCourse,
             'course_info' => $request->courseCards,
             'admin_id' => $id,
+
+            'vh' => $request->vh,
+            'coordinate_x' => $request->shirina,
+            'coordinate_y' => $request->dlina,
         ];
 
         if ($request->hasFile('courseImage')) {
             $data['image'] = $request->file('courseImage')->store('upload', 'public');
+        }
+        if ($request->hasFile('certificate')) {
+            $data['certificate'] = $request->file('certificate')->store('upload', 'public');
         }
 
         Course::where('id', $request->idCourse)->update($data);
