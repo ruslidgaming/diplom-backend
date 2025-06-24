@@ -16,7 +16,9 @@ class CourseController extends Controller
     {
 
         $image = $request->file('courseImage')->store('upload', 'public');
+        $certificate = $request->file('certificate')->store('upload', 'public');
         $id = auth('admin-api')->id();
+
         $course = Course::create([
             'name' => $request->title,
             'price' => $request->price,
@@ -26,6 +28,10 @@ class CourseController extends Controller
             'course_info' => $request->courseCards,
             'admin_id' => $id,
             'image' => $image,
+
+            'coordinate_x' => $request->shirina,
+            'coordinate_y' => $request->dlina,
+            'certificate' => $certificate,
         ]);
 
         Log::debug('ПРИВЕТ', $request->all());
@@ -96,7 +102,7 @@ class CourseController extends Controller
     public function catalog(Request $request)
     {
         $adminId = auth('admin-api')->id();
-        
+
         $courses = Course::where('admin_id', $adminId)->orderBy('created_at', 'desc')->get();
 
         return response()->json(['courses' => $courses], 200);

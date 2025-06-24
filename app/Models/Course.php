@@ -18,17 +18,24 @@ class Course extends Model
         'slogan',
         'course_info',
         'admin_id',
+        
+        'certificate',
+        'coordinate_x',
+        'coordinate_y',
     ];
 
-    public function admin() {
+    public function admin()
+    {
         return $this->hasMany(Admin::class);
     }
 
-    public function teacher() {
+    public function teacher()
+    {
         return $this->belongsTo(Teacher::class);
     }
 
-    public function statistic() {
+    public function statistic()
+    {
         return $this->belongsTo(Statistic::class);
     }
 
@@ -38,11 +45,13 @@ class Course extends Model
         return $this->hasMany(Menourse::class, 'course_id');
     }
 
-    public function lesson() {
+    public function lesson()
+    {
         return $this->hasMany(Lesson::class);
     }
 
-    public function progress() {
+    public function progress()
+    {
         return $this->belongsTo(Progress::class);
     }
 
