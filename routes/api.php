@@ -151,6 +151,7 @@ Route::get('/lessons/delete', [LessonController::class, 'delete']);
 Route::get('/lessons/show', [LessonController::class, 'show']);
 Route::post('/lessons/edit', [LessonController::class, 'edit']);
 Route::get('/lessons/serteficate', [LessonController::class, 'serteficate']);
+Route::get('/lessons/serteficateDownload', [LessonController::class, 'serteficateDownload']);
 
 Route::post('/projects', function () {
     return response()->json("no");

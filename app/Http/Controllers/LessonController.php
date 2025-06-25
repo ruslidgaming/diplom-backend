@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Lesson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LessonController extends Controller
 {
@@ -94,7 +95,17 @@ class LessonController extends Controller
 
     public function serteficate(Request $request)
     {
-        
         return response()->json($request->all());
+    }
+    public function serteficateDownload(Request $request)
+    {
+
+        $path = public_path("storage/" . $request->path);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->download($path);
     }
 }

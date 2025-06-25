@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Course;
 use App\Models\Lesson;
 use App\Models\Progress;
@@ -49,8 +50,8 @@ class StudentController extends Controller
             'password' => Hash::make($request->password),
             'admin_id' => $request->id,
             Rule::unique('students')->where(function ($query) use ($request) {
-            return $query->where('admin_id', $request->admin_id);
-        }),
+                return $query->where('admin_id', $request->admin_id);
+            }),
         ]);
 
         return response()->json(['user' => $user], 201);
@@ -77,6 +78,7 @@ class StudentController extends Controller
         // ]);
         $user = auth('student-api')->user();
         $user->role = 'student';
+        $user->school = Admin::findOrFail($user->admin_id)->companyName;
 
         return response()->json([
             'access_token' => $token,

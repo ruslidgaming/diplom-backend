@@ -45,7 +45,8 @@ class CerteficatController extends Controller
 
         // Возвращаем полный URL к изображению
         return response()->json([
-            'url' => asset('storage/sertificate/' . $filename)
+            'url' => 'sertificate/' . $filename
+            // 'url' => asset('storage/sertificate/' . $filename)
         ]);
     }
 }
